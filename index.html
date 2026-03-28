@@ -10,7 +10,7 @@
       --bg-light: #f6f2ea; 
       --paper: #ffffff; 
       --brand: #9a382b; 
-      --nav-bg: rgba(255, 255, 255, 0.9);
+      --nav-bg: rgba(255, 255, 255, 0.9); /* 提高不透明度，讓選單更清楚 */
     }
 
     body { 
@@ -54,6 +54,7 @@
     .nav-logo-img {
       height: 45px;
       width: auto;
+      transition: 0.3s;
     }
 
     /* 漢堡按鈕 (預設隱藏) */
@@ -68,7 +69,6 @@
       border-radius: 6px;
       cursor: pointer;
       gap: 4px;
-      z-index: 1100;
     }
 
     .menu-toggle span {
@@ -76,7 +76,6 @@
       width: 22px;
       height: 3px;
       background: white;
-      transition: 0.3s;
     }
 
     .nav-links {
@@ -113,31 +112,20 @@
       align-items: center;
     }
 
-    .hero-title-img-box {
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      margin-bottom: 30px;
-    }
-
     .hero-title-img {
       width: 100%;
       max-width: 650px; 
       height: auto; 
       filter: drop-shadow(0 4px 10px rgba(0,0,0,0.2)); 
+      margin-bottom: 30px;
     }
 
     .hero-description-box {
       background: rgba(255, 255, 255, 0.6); 
       max-width: 750px;
       margin: 0 auto 30px auto; 
-      padding: 15px 25px;
+      padding: 20px 25px;
       border-radius: 15px;
-    }
-
-    .hero-description-box h2 {
-      font-size: 1.2rem;
-      margin: 0;
     }
 
     /* --- 輪播圖 --- */
@@ -210,19 +198,19 @@
       margin-top: 40px; 
     }
 
-    /* --- 手機版媒體查詢 (置中與縮小樣式) --- */
+    /* --- 響應式手機版優化 (關鍵在此) --- */
     @media (max-width: 768px) {
-      .topbar { padding: 8px 15px; }
+      .topbar { padding: 10px 15px; }
       
-      .nav-logo-img { height: 32px; } /* Logo 縮小 */
+      .nav-logo-img { height: 32px; } /* 縮小 Logo 防止擠壓 */
 
-      .menu-toggle { display: flex; } /* 顯示漢堡 */
+      .menu-toggle { display: flex; } /* 顯示紅色漢堡 */
 
       .nav-links {
-        display: none; 
+        display: none; /* 平時隱藏 */
         flex-direction: column;
         position: absolute;
-        top: 60px;
+        top: 65px;
         left: 50%;
         transform: translateX(-50%);
         background: white;
@@ -230,17 +218,18 @@
         padding: 20px 0;
         border-radius: 15px;
         box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        gap: 8px;
+        gap: 10px;
         z-index: 1050;
       }
 
-      .nav-links.active { display: flex; }
+      .nav-links.active { display: flex; } /* 點擊後顯示 */
 
       .nav-btn {
-        width: 85%;
+        width: 80%;
         margin: 0 auto;
         text-align: center;
         padding: 12px 0;
+        background: #f0f0f0;
       }
 
       .hero {
@@ -249,25 +238,17 @@
         min-height: auto;
       }
 
-      .hero-title-img { max-width: 280px; } /* 標題圖縮小 */
-
-      .hero-description-box h2 { font-size: 1rem; }
+      .hero-title-img { max-width: 280px; }
 
       .carousel-container {
-        height: 230px; 
+        height: 250px; 
         border: 6px solid white; 
       }
 
       .carousel-logo {
-        height: 35px;
-        left: 12px;
-        bottom: 12px;
-      }
-
-      .btn-main {
-        padding: 15px 40px;
-        font-size: 1rem;
-        margin-top: 30px;
+        height: 40px;
+        left: 15px;
+        bottom: 15px;
       }
     }
   </style>
@@ -306,9 +287,7 @@
 
   <main> 
     <section class="hero">
-      <div class="hero-title-img-box">
-        <img src="images/標題.png" alt="標題圖" class="hero-title-img">
-      </div>
+      <img src="images/標題.png" alt="標題" class="hero-title-img">
 
       <div class="hero-description-box">
         <h2>一群高中生，陪伴長者走回海邊，把正在消逝的文化重新帶回生活。</h2>
@@ -331,7 +310,7 @@
   </main>
 
   <script>
-    // 漢堡選單邏輯
+    // 漢堡選單切換
     const menuToggle = document.getElementById('mobile-menu');
     const navLinks = document.getElementById('nav-list');
 
