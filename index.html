@@ -188,53 +188,66 @@
       margin-top: 40px; 
     }
 
-    /* --- 手機版媒體查詢 (漢堡選單邏輯) --- */
-    @media (max-width: 768px) {
-      .menu-toggle {
-        display: flex; /* 顯示漢堡按鈕 */
-      }
+    /* --- 響應式手機版優化 (置中加強版) --- */
+@media (max-width: 768px) {
+    /* 1. 導覽列與漢堡選單置中 */
+    .nav {
+        flex-direction: row; /* 讓 Logo 和 漢堡按鈕保持左右兩端 */
+        justify-content: space-between;
+    }
 
-      .nav-links {
-        display: none; /* 預設隱藏選單 */
-        flex-direction: column;
-        position: absolute;
-        top: 65px;
-        right: 20px;
-        background: white;
-        width: 200px;
-        padding: 15px;
-        border-radius: 12px;
-        box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-        gap: 10px;
-        z-index: 1001;
-      }
-
-      .nav-links.active {
-        display: flex; /* 點擊後顯示 */
-      }
-
-      .nav-btn {
-        width: 100%;
-        box-sizing: border-box;
-        text-align: center;
-      }
-
-      .hero {
+    /* 2. 英雄區塊內容置中 */
+    .hero {
         padding: 30px 15px;
         min-height: auto;
-      }
-
-      .carousel-container {
-        height: 250px; 
-        border: 6px solid white; 
-      }
-
-      .carousel-logo {
-        height: 40px;
-        left: 15px;
-        bottom: 15px;
-      }
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* 讓子元素水平置中 */
+        text-align: center;   /* 讓文字置中 */
     }
+
+    /* 3. 標題圖片置中 */
+    .hero-title-img-box {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+
+    /* 4. 描述文字框置中並調整寬度 */
+    .hero-description-box {
+        width: 90%;
+        margin: 20px auto;
+        padding: 15px;
+    }
+
+    /* 5. 輪播圖容器置中 */
+    .carousel-container {
+        height: 250px;
+        width: 100%;       /* 確保寬度佔滿 */
+        margin: 0 auto;    /* 左右自動邊距 */
+        border: 6px solid white;
+    }
+
+    /* 6. 漢堡選單彈出後的文字置中 */
+    .nav-links {
+        right: 50%;
+        transform: translateX(50%); /* 讓選單在螢幕正中間彈出 */
+        width: 80%;
+        text-align: center;
+    }
+
+    .nav-btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    /* 7. 主按鈕置中 */
+    .btn-main {
+        width: fit-content; /* 根據文字寬度 */
+        margin: 30px auto 0 auto;
+        display: inline-block;
+    }
+}
   </style>
 </head>
 <body>
