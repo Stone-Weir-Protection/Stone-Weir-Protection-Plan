@@ -189,33 +189,88 @@
     }
 
     /* --- 響應式手機版優化 (置中加強版) --- */
+/* --- 響應式手機版優化 (漢堡選單強化版) --- */
 @media (max-width: 768px) {
-    /* 讓 Logo 縮小，限制高度在 35px 以內 */
+    /* 1. 讓導覽列保持高度並置中內容 */
+    .nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 50px; /* 固定高度防止擠壓 */
+    }
+
+    /* 2. 縮小 Logo */
     .nav-logo-img {
-        height: 35px; 
+        height: 30px; 
         width: auto;
     }
 
-    /* 確保導覽列高度固定，不會被 Logo 撐大 */
-    .topbar {
-        padding: 8px 15px;
-    }
-
-    /* 漢堡選單的垂直位置也微調一下 */
+    /* 3. 漢堡按鈕強化 (確保看得到) */
     .menu-toggle {
+        display: flex; 
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 40px;
+        height: 40px;
+        background: var(--brand); /* 給它一個深色背景框 */
+        border-radius: 5px;
         gap: 4px;
+        z-index: 1100; /* 確保在最前方 */
     }
 
-    /* 英雄區塊內的標題圖 (images/標題.png) 也同步縮小一點，才不會比例不對 */
+    .menu-toggle span {
+        width: 25px;
+        height: 3px;
+        background: white; /* 線條改為白色，與深色框對比 */
+        display: block;
+    }
+
+    /* 4. 下拉選單置中 */
+    .nav-links {
+        display: none; 
+        flex-direction: column;
+        position: absolute;
+        top: 60px; /* 在導覽列下方 */
+        left: 50%;
+        transform: translateX(-50%); /* 水平置中 */
+        background: white;
+        width: 90%;
+        padding: 20px 0;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        z-index: 1050;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .nav-btn {
+        width: 80%;
+        margin: 5px auto;
+        text-align: center;
+        font-size: 16px; /* 手機版字稍微大一點好按 */
+        padding: 12px;
+    }
+
+    /* 5. 英雄區塊與圖片置中 */
+    .hero {
+        padding: 20px 10px;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
     .hero-title-img {
-        max-width: 280px; 
+        max-width: 80%; /* 標題圖縮小一點 */
+        height: auto;
     }
 
-    /* 輪播圖內的 Logo 也同步縮小 */
-    .carousel-logo {
-        height: 35px;
-        left: 10px;
-        bottom: 10px;
+    .carousel-container {
+        height: 220px; /* 輪播圖高度調小 */
+        width: 95%;
     }
 }
   </style>
