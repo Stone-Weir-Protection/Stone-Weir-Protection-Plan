@@ -190,62 +190,32 @@
 
     /* --- 響應式手機版優化 (置中加強版) --- */
 @media (max-width: 768px) {
-    /* 1. 導覽列與漢堡選單置中 */
-    .nav {
-        flex-direction: row; /* 讓 Logo 和 漢堡按鈕保持左右兩端 */
-        justify-content: space-between;
+    /* 讓 Logo 縮小，限制高度在 35px 以內 */
+    .nav-logo-img {
+        height: 35px; 
+        width: auto;
     }
 
-    /* 2. 英雄區塊內容置中 */
-    .hero {
-        padding: 30px 15px;
-        min-height: auto;
-        display: flex;
-        flex-direction: column;
-        align-items: center; /* 讓子元素水平置中 */
-        text-align: center;   /* 讓文字置中 */
+    /* 確保導覽列高度固定，不會被 Logo 撐大 */
+    .topbar {
+        padding: 8px 15px;
     }
 
-    /* 3. 標題圖片置中 */
-    .hero-title-img-box {
-        display: flex;
-        justify-content: center;
-        width: 100%;
+    /* 漢堡選單的垂直位置也微調一下 */
+    .menu-toggle {
+        gap: 4px;
     }
 
-    /* 4. 描述文字框置中並調整寬度 */
-    .hero-description-box {
-        width: 90%;
-        margin: 20px auto;
-        padding: 15px;
+    /* 英雄區塊內的標題圖 (images/標題.png) 也同步縮小一點，才不會比例不對 */
+    .hero-title-img {
+        max-width: 280px; 
     }
 
-    /* 5. 輪播圖容器置中 */
-    .carousel-container {
-        height: 250px;
-        width: 100%;       /* 確保寬度佔滿 */
-        margin: 0 auto;    /* 左右自動邊距 */
-        border: 6px solid white;
-    }
-
-    /* 6. 漢堡選單彈出後的文字置中 */
-    .nav-links {
-        right: 50%;
-        transform: translateX(50%); /* 讓選單在螢幕正中間彈出 */
-        width: 80%;
-        text-align: center;
-    }
-
-    .nav-btn {
-        width: 100%;
-        justify-content: center;
-    }
-
-    /* 7. 主按鈕置中 */
-    .btn-main {
-        width: fit-content; /* 根據文字寬度 */
-        margin: 30px auto 0 auto;
-        display: inline-block;
+    /* 輪播圖內的 Logo 也同步縮小 */
+    .carousel-logo {
+        height: 35px;
+        left: 10px;
+        bottom: 10px;
     }
 }
   </style>
