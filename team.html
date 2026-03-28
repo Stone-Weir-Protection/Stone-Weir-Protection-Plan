@@ -2,118 +2,250 @@
 <html lang="zh-Hant">
 <head>
   <meta charset="utf-8">
+  <link rel="icon" href="images/logo.jfif" type="image/png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
   <title>隊員介紹 - 讓石滬再現</title>
   <style>
-    :root{ --brand:#9a382b; --bg:#f6f2ea; --line:#e8dfd3; }
+    :root { 
+      --brand: #9a382b; 
+      --bg: #f6f2ea; 
+      --line: #e8dfd3; 
+      --nav-bg: rgba(255, 255, 255, 0.95);
+    }
     
     /* --- 核心背景設置 --- */
     body { 
-        font-family: sans-serif; 
-        margin: 0; 
-        line-height: 1.8; 
-        background-color: var(--bg); 
-        background-image: url('images/teambackground.jpg'); 
-        background-repeat: no-repeat;
-        background-size: cover; 
-        background-position: center center; 
-        background-attachment: fixed; 
+      font-family: "PingFang TC", "Microsoft JhengHei", sans-serif; 
+      margin: 0; 
+      line-height: 1.8; 
+      background-color: var(--bg); 
+      background-image: url('images/teambackground.jpg'); 
+      background-repeat: no-repeat;
+      background-size: cover; 
+      background-position: center center; 
+      background-attachment: fixed; 
+      color: #333;
     }
     
     /* --- 導覽列 --- */
-    .topbar{ position:sticky; top:0; background:white; border-bottom:1px solid var(--line); z-index:100; padding:10px 0; }
-    .nav { display:flex; justify-content:center; gap:8px; flex-wrap:wrap; max-width:1200px; margin:auto; }
-    .nav-btn { padding:8px 12px; background:#f4ece2; border:1px solid var(--line); border-radius:4px; text-decoration:none; color:#4b5563; font-weight:bold; font-size:13px; transition:0.3s; }
-    .nav-btn:hover, .nav-btn.active { background:var(--brand); color:white; border-color:var(--brand); }
+    .topbar { 
+      position: sticky; 
+      top: 0; 
+      background: var(--nav-bg); 
+      backdrop-filter: blur(15px); 
+      -webkit-backdrop-filter: blur(15px);
+      border-bottom: 1px solid var(--line); 
+      z-index: 1000; 
+      padding: 10px 20px; 
+    }
 
-    /* --- 主要容器與通用元件 --- */
-    .container { max-width:1100px; margin:40px auto; padding:0 20px; }
-    .back-home { display:inline-block; margin-bottom:20px; padding:10px 20px; background:var(--brand); color:white; text-decoration:none; border-radius:6px; font-weight:bold; transition: 0.3s; }
+    .nav { 
+      display: flex; 
+      align-items: center; 
+      justify-content: space-between; 
+      max-width: 1200px; 
+      margin: auto; 
+    }
+
+    .nav-logo-placeholder { display: flex; align-items: center; gap: 8px; }
+    .nav-logo-placeholder img { height: 40px; width: auto; transition: 0.3s; }
+
+    /* 漢堡按鈕 */
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 38px;
+      height: 38px;
+      background: var(--brand); 
+      border-radius: 6px;
+      cursor: pointer;
+      gap: 4px;
+    }
+    .menu-toggle span { display: block; width: 20px; height: 2px; background: white; transition: 0.3s; }
+
+    .nav-links { display: flex; gap: 8px; }
+    .nav-btn { 
+      padding: 8px 12px; 
+      background: rgba(255, 255, 255, 0.5); 
+      border: 1px solid var(--line); 
+      border-radius: 4px; 
+      text-decoration: none; 
+      color: #4b5563; 
+      font-weight: bold; 
+      font-size: 13px; 
+      transition: 0.3s; 
+    }
+    .nav-btn:hover, .nav-btn.active { background: var(--brand); color: white; border-color: var(--brand); }
+
+    /* --- 彈出動畫 --- */
+    @keyframes slideDown {
+      from { opacity: 0; transform: translate(-50%, -15px); }
+      to { opacity: 1; transform: translate(-50%, 0); }
+    }
+
+    /* --- 主要容器 --- */
+    .container { max-width: 1100px; margin: 40px auto; padding: 0 20px; }
+    .back-home { display: inline-block; margin-bottom: 20px; padding: 10px 20px; background: var(--brand); color: white; text-decoration: none; border-radius: 6px; font-weight: bold; transition: 0.3s; }
     .back-home:hover { background: #7a2c22; transform: translateX(-5px); }
 
-    /* --- 新增：團隊總體介紹文字框樣式 --- */
     .team-intro-box {
-        background: rgba(255, 255, 255, 0.9); /* 保持白色半透明質感 */
-        padding: 1px;
-        border-radius: 20px;
-        border: 1px solid var(--line);
-        box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-        margin-bottom: 40px; /* 與下方 Grid 保持距離 */
-        text-align: center; /* 文字居中 */
+      background: rgba(255, 255, 255, 0.85);
+      padding: 10px;
+      border-radius: 20px;
+      border: 1px solid var(--line);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+      margin-bottom: 40px;
+      text-align: center;
+      backdrop-filter: blur(5px);
     }
-    .team-intro-box p {
-        margin: 0;
-        color: #555;
-        font-size: 1.1rem;
-        max-width: 800px; /* 限制文字寬度，方便閱讀 */
-        margin: 0 auto; /* 區塊居中 */
-    }
+    .team-intro-box h1 { color: var(--brand); margin: 10px 0; }
 
-    /* --- 核心互動樣式 (照片圓圈與遮罩) --- */
+    /* --- 團隊照片與遮罩 --- */
     .team-photo-wrapper { 
-        position: relative; 
-        width: 180px;
-        height: 180px;
-        margin: 0 auto 25px auto;
-        border-radius: 50%;
-        overflow: hidden; 
-        border: 5px solid white;
-        box-shadow: 0 8px 15px rgba(0,0,0,0.1);
-        cursor: pointer;
+      position: relative; 
+      width: 180px;
+      height: 180px;
+      margin: 0 auto 20px auto;
+      border-radius: 50%;
+      overflow: hidden; 
+      border: 5px solid white;
+      box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+      cursor: pointer;
+      /* 確保手機點擊不會有藍色框 */
+      -webkit-tap-highlight-color: transparent;
     }
     
     .team-photo { 
-        width: 100%;
-        height: 100%;
-        object-fit: cover; 
-        display: block;
-        transition: 0.5s ease;
+      width: 100%;
+      height: 100%;
+      object-fit: cover; 
+      display: block;
+      transition: 0.5s ease;
     }
 
     .intro-overlay {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(154, 56, 43, 0.9); 
-        color: white;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 15px;
-        box-sizing: border-box;
-        font-size: 0.85rem;
-        line-height: 1.5;
-        text-align: center;
-        opacity: 0; 
-        transition: 0.5s ease;
-        border-radius: 50%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(154, 56, 43, 0.92); 
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      box-sizing: border-box;
+      font-size: 0.9rem;
+      line-height: 1.5;
+      text-align: center;
+      opacity: 0; 
+      transition: 0.5s ease;
+      border-radius: 50%;
     }
 
-    .team-photo-wrapper:hover .intro-overlay { opacity: 1; }
-    .team-photo-wrapper:hover .team-photo { transform: scale(1.1); }
+    /* 滑鼠懸停與點擊啟動 (透過 JS 控制 .active) */
+    .team-photo-wrapper:hover .intro-overlay,
+    .team-photo-wrapper.active .intro-overlay { opacity: 1; }
+    .team-photo-wrapper:hover .team-photo,
+    .team-photo-wrapper.active .team-photo { transform: scale(1.1); }
 
-    /* --- 團隊 Grid 與卡片樣式 --- */
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 30px; align-items: stretch; }
+    /* --- 網格佈局 --- */
+    .grid { 
+      display: grid; 
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); 
+      gap: 30px; 
+    }
     
-    .card { background: rgba(255, 255, 255, 0.95); padding: 35px 25px; border-radius: 20px; border: 1px solid var(--line); text-align: center; transition: 0.3s ease; display: flex; flex-direction: column; }
-    .card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(154,56,43,0.15); }
-    .card h3 { color: var(--brand); margin: 0 0 10px 0; font-size: 1.4rem; }
+    .card { 
+      background: rgba(255, 255, 255, 0.9); 
+      padding: 30px 20px; 
+      border-radius: 20px; 
+      border: 1px solid var(--line); 
+      text-align: center; 
+      transition: 0.3s ease; 
+      backdrop-filter: blur(5px);
+    }
+    .card:hover { transform: translateY(-8px); box-shadow: 0 12px 25px rgba(154,56,43,0.1); }
+    .card h3 { color: var(--brand); margin: 0 0 8px 0; font-size: 1.3rem; }
     .card p { margin: 0; color: #555; font-size: 0.95rem; }
     .card strong { color: var(--brand); display: block; margin-bottom: 5px; }
+
+    /* --- 手機版媒體查詢 --- */
+    @media (max-width: 768px) {
+      .topbar { padding: 8px 15px; }
+      .nav-logo-placeholder img { height: 28px; }
+
+      .menu-toggle { display: flex; }
+
+      .nav-links {
+        display: none; 
+        flex-direction: column;
+        position: absolute;
+        top: 55px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: white;
+        width: 90%;
+        padding: 15px 0;
+        border-radius: 12px;
+        box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        z-index: 1050;
+        animation: slideDown 0.4s ease-out forwards;
+      }
+
+      .nav-links.active { display: flex; }
+
+      .nav-btn {
+        width: 85%;
+        margin: 4px auto;
+        text-align: center;
+        background: #f9f9f9;
+        border: none;
+        padding: 12px 0;
+      }
+
+      .container { margin: 20px auto; padding: 0 15px; }
+      .team-intro-box { margin-bottom: 25px; border-radius: 15px; }
+      .team-intro-box h1 { font-size: 1.5rem; }
+
+      .grid { gap: 20px; grid-template-columns: 1fr 1fr; } /* 手機版改為兩排，節省空間 */
+      .card { padding: 20px 10px; }
+      .team-photo-wrapper { width: 120px; height: 120px; border-width: 3px; }
+      .intro-overlay { font-size: 0.75rem; padding: 10px; }
+      .card h3 { font-size: 1.1rem; }
+      .card p { font-size: 0.8rem; }
+    }
+
+    /* 超小螢幕改回一排 */
+    @media (max-width: 480px) {
+      .grid { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
 <body>
   <header class="topbar">
     <nav class="nav">
-    <a href="index.html" class="nav-btn">首頁</a>
-      <a href="team.html" class="nav-btn active">隊員</a>
-      <a href="idea.html" class="nav-btn">核心想法</a>
-      <a href="永續傳承.html" class="nav-btn">永續傳承</a>
-      <a href="商品.html" class="nav-btn">商品</a>
-      <a href="三代合照.html" class="nav-btn">三代合照</a>
-      <a href="money.html" class="nav-btn">資金應用</a>
-      <a href="捐款連結.html" class="nav-btn">捐款連結</a>
+      <div class="nav-logo-placeholder">
+        <img src="images/logo.jfif" alt="Logo">
+      </div>
+
+      <div class="menu-toggle" id="mobile-menu">
+        <span></span><span></span><span></span>
+      </div>
+
+      <div class="nav-links" id="nav-list">
+        <a href="index.html" class="nav-btn">首頁</a>
+        <a href="team.html" class="nav-btn active">隊員</a>
+        <a href="idea.html" class="nav-btn">核心想法</a>
+        <a href="永續傳承.html" class="nav-btn">永續傳承</a>
+        <a href="商品.html" class="nav-btn">商品</a>
+        <a href="三代合照.html" class="nav-btn">三代合照</a>
+        <a href="money.html" class="nav-btn">資金應用</a>
+        <a href="捐款連結.html" class="nav-btn">捐款連結</a>
+      </div>
     </nav>
   </header>
 
@@ -121,14 +253,12 @@
     <a href="index.html" class="back-home">← 返回主頁</a>
   
     <div class="team-intro-box">
-        <h1>
-            核心團隊成員
-        </h1>
+      <h1>核心團隊成員</h1>
     </div>
 
     <div class="grid">
       <div class="card">
-        <div class="team-photo-wrapper">
+        <div class="team-photo-wrapper" onclick="toggleOverlay(this)">
             <img src="images/郭栩廷.jfif" alt="郭栩廷" class="team-photo">
             <div class="intro-overlay">負責整體計畫的策劃，希望能讓石滬文化被更多人看見。</div>
         </div>
@@ -137,7 +267,7 @@
       </div>
 
       <div class="card">
-        <div class="team-photo-wrapper">
+        <div class="team-photo-wrapper" onclick="toggleOverlay(this)">
             <img src="images/江宥均.jfif" alt="江宥均" class="team-photo">
             <div class="intro-overlay">熱愛藝術與美學，負責將石滬的文化底蘊轉化為視覺藝術。</div>
         </div>
@@ -146,7 +276,7 @@
       </div>
 
       <div class="card">
-        <div class="team-photo-wrapper">
+        <div class="team-photo-wrapper" onclick="toggleOverlay(this)">
             <img src="images/林筱喬.jfif" alt="林筱喬" class="team-photo">
             <div class="intro-overlay">專注於社會議題，致力於推動青年參與地方創生。</div>
         </div>
@@ -155,7 +285,7 @@
       </div>
 
       <div class="card">
-        <div class="team-photo-wrapper">
+        <div class="team-photo-wrapper" onclick="toggleOverlay(this)">
             <img src="images/廖鴻瑜.jfif" alt="廖鴻瑜" class="team-photo">
             <div class="intro-overlay">深耕地方行動，連結社區與團隊，建立穩固的合作關係。</div>
         </div>
@@ -164,7 +294,7 @@
       </div>
 
       <div class="card">
-        <div class="team-photo-wrapper">
+        <div class="team-photo-wrapper" onclick="toggleOverlay(this)">
             <img src="images/簡美琪2.jfif" alt="簡美琪" class="team-photo">
             <div class="intro-overlay">負責活動主持，用語言傳遞石滬的故事與感動。</div>
         </div>
@@ -173,7 +303,7 @@
       </div>
 
       <div class="card">
-        <div class="team-photo-wrapper">
+        <div class="team-photo-wrapper" onclick="toggleOverlay(this)">
             <img src="images/吳艾芸2.jfif" alt="吳艾芸" class="team-photo">
             <div class="intro-overlay">擅長捕捉瞬間，負責用鏡頭記錄修護石滬的點點滴滴。</div>
         </div>
@@ -182,7 +312,7 @@
       </div>
 
       <div class="card">
-        <div class="team-photo-wrapper">
+        <div class="team-photo-wrapper" onclick="toggleOverlay(this)">
             <img src="images/邱婗恩2.jfif" alt="邱婗恩" class="team-photo">
             <div class="intro-overlay">喜愛動手實作，負責攤位規劃與充滿溫度的手作體驗。</div>
         </div>
@@ -191,7 +321,7 @@
       </div>
 
       <div class="card">
-        <div class="team-photo-wrapper">
+        <div class="team-photo-wrapper" onclick="toggleOverlay(this)">
             <img src="images/趙致衡.jfif" alt="趙致衡" class="team-photo">
             <div class="intro-overlay">線上經營行銷，網路公關。</div>
         </div>
@@ -200,5 +330,32 @@
       </div>
     </div>
   </main>
+
+  <script>
+    // 漢堡選單邏輯
+    const menuToggle = document.getElementById('mobile-menu');
+    const navLinks = document.getElementById('nav-list');
+
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+
+    // 手機版點擊照片顯示文字 (觸發 active class)
+    function toggleOverlay(element) {
+      // 先移除其他人的 active，確保一次只有一個顯示介紹
+      document.querySelectorAll('.team-photo-wrapper').forEach(wrapper => {
+        if (wrapper !== element) wrapper.classList.remove('active');
+      });
+      // 切換目前的 active
+      element.classList.toggle('active');
+    }
+
+    // 點擊空白處關閉選單或照片遮罩
+    document.addEventListener('click', (e) => {
+      if (!menuToggle.contains(e.target) && !navLinks.contains(e.target)) {
+        navLinks.classList.remove('active');
+      }
+    });
+  </script>
 </body>
 </html>
