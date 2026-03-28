@@ -2,7 +2,8 @@
 <html lang="zh-Hant">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="images/logo.jfif" type="image/png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
   <title>核心想法 - 讓石滬再現</title>
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,13 +15,11 @@
       --brand: #9a382b; 
       --bg: #f6f2ea; 
       --line: #e8dfd3; 
-      /* 用於透明度計算的 RGB 數值 */
-      --brand-rgb: 154, 56, 43; 
+      --nav-bg: rgba(255, 255, 255, 0.95);
     }
     
     body {
       font-family: "PingFang TC", "Microsoft JhengHei", sans-serif;
-      /* 背景設定 */
       background-image: url('images/ideabackground.jpg'); 
       background-size: cover;
       background-attachment: fixed;
@@ -30,28 +29,78 @@
       color: #333;
     }
     
-    /* 導覽列：毛玻璃效果 */
+    /* --- 導覽列 --- */
     .topbar { 
       position: sticky; 
       top: 0; 
-      background: rgba(255, 255, 255, 0.75); 
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
+      background: var(--nav-bg); 
+      backdrop-filter: blur(15px); 
+      -webkit-backdrop-filter: blur(15px);
       border-bottom: 1px solid var(--line); 
-      z-index: 100; 
-      padding: 10px 0; 
+      z-index: 1000; 
+      padding: 10px 20px; 
     }
 
-    .nav { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; }
-    .nav-btn { padding: 8px 12px; background: rgba(244, 236, 226, 0.6); border: 1px solid var(--line); border-radius: 4px; text-decoration: none; color: #4b5563; font-weight: bold; font-size: 13px; transition: 0.3s; }
-    .nav-btn:hover, .nav-btn.active { background: var(--brand); color: white; }
+    .nav { 
+      display: flex; 
+      align-items: center; 
+      justify-content: space-between; /* 電腦版保持左右分布 */
+      max-width: 1200px; 
+      margin: auto; 
+    }
+
+    /* 手機版隱藏的 Logo 盒子，可放老盟/學校 Logo */
+    .nav-logo-placeholder {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .nav-logo-placeholder img {
+      height: 35px;
+      width: auto;
+    }
+
+    /* 漢堡按鈕 (手機版才出現) */
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 38px;
+      height: 38px;
+      background: var(--brand); 
+      border-radius: 6px;
+      cursor: pointer;
+      gap: 4px;
+    }
+    .menu-toggle span { display: block; width: 20px; height: 2px; background: white; transition: 0.3s; }
+
+    .nav-links { display: flex; gap: 8px; }
     
-    /* 內容容器：優化後的透明度與毛玻璃 */
+    .nav-btn { 
+      padding: 8px 12px; 
+      background: rgba(244, 236, 226, 0.6); 
+      border: 1px solid var(--line); 
+      border-radius: 4px; 
+      text-decoration: none; 
+      color: #4b5563; 
+      font-weight: bold; 
+      font-size: 13px; 
+      transition: 0.3s; 
+    }
+    .nav-btn:hover, .nav-btn.active { background: var(--brand); color: white; }
+
+    /* --- 彈出動畫 --- */
+    @keyframes slideDown {
+      from { opacity: 0; transform: translate(-50%, -15px); }
+      to { opacity: 1; transform: translate(-50%, 0); }
+    }
+    
+    /* --- 內容容器 --- */
     .container { 
       max-width: 850px; 
       margin: 40px auto; 
-      /* 調整透明度至 0.7，讓背景隱約透出，同時保持閱讀性 */
-      background: rgba(255, 255, 255, 0.7); 
+      background: rgba(255, 255, 255, 0.75); 
       backdrop-filter: blur(12px); 
       -webkit-backdrop-filter: blur(12px);
       padding: 50px; 
@@ -63,21 +112,15 @@
     .back-home { display: inline-block; margin-bottom: 20px; padding: 8px 18px; background: var(--brand); color: white; text-decoration: none; border-radius: 6px; font-weight: bold; transition: 0.3s; }
     .back-home:hover { opacity: 0.9; transform: translateX(-3px); }
     
-    /* 書法字體樣式應用 */
-    /* 1. 只有 h1 套用書法字體 */
-    /* 1. 書法字體：僅限定應用於 h1 */
     h1 { 
       font-family: 'Ma Shan Zheng', cursive; 
-      font-size: 3rem; 
+      font-size: 3.5rem; 
       margin-top: 0;
       color: #222;
       text-align: center;
-      letter-spacing: 2px;
     }
 
-    /* 2. 移除 h2 的特殊字體：回歸系統預設黑體 */
     h2 { 
-      /* 指定為 inherit 會繼承 body 的黑體設定，確保不會被書法字體干擾 */
       font-family: inherit; 
       font-size: 1.6rem;
       color: var(--brand); 
@@ -85,10 +128,7 @@
       padding-left: 15px; 
       margin-top: 50px; 
       font-weight: bold;
-      letter-spacing: 0.5px;
     }
-    }
-
 
     p { font-size: 1.05rem; text-align: justify; color: #444; }
 
@@ -102,32 +142,93 @@
       box-shadow: 0 8px 20px rgba(0,0,0,0.15);
     }
 
-    /* Logo 固定在圖片左下角 */
     .content-logo {
       position: absolute;
       left: 15px;
       bottom: 15px;
-      height: 50px;
+      height: 45px;
       width: auto;
-      z-index: 10;
-      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
       pointer-events: none;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
     }
 
     footer { text-align: center; padding: 30px; color: #666; font-size: 0.9rem; }
+
+    /* --- 手機版媒體查詢 --- */
+    @media (max-width: 768px) {
+      .topbar { padding: 8px 15px; }
+      
+      /* Logo 縮小 */
+      .nav-logo-placeholder img { height: 28px; }
+
+      /* 顯示漢堡 */
+      .menu-toggle { display: flex; }
+
+      /* 選單彈出效果 */
+      .nav-links {
+        display: none; 
+        flex-direction: column;
+        position: absolute;
+        top: 55px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: white;
+        width: 90%;
+        padding: 15px 0;
+        border-radius: 12px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        z-index: 1050;
+        animation: slideDown 0.4s ease-out forwards;
+      }
+
+      .nav-links.active { display: flex; }
+
+      .nav-btn {
+        width: 85%;
+        margin: 4px auto;
+        text-align: center;
+        background: #f9f9f9;
+        border: none;
+        padding: 12px 0;
+      }
+
+      /* 容器縮減邊距與置中 */
+      .container {
+        margin: 20px 15px;
+        padding: 30px 20px;
+        border-radius: 15px;
+        text-align: center; /* 讓手機文字置中 */
+      }
+
+      h1 { font-size: 2.2rem; }
+      h2 { font-size: 1.3rem; border-left: none; border-bottom: 3px solid var(--brand); padding-left: 0; padding-bottom: 5px; display: inline-block; }
+      p { font-size: 1rem; text-align: left; } /* 內文保持左對齊較好閱讀 */
+
+      .content-logo { height: 30px; left: 10px; bottom: 10px; }
+    }
   </style>
 </head>
 <body>
   <header class="topbar">
     <nav class="nav">
-      <a href="index.html" class="nav-btn">首頁</a>
-      <a href="team.html" class="nav-btn">隊員</a>
-      <a href="idea.html" class="nav-btn active">核心想法</a>
-      <a href="永續傳承.html" class="nav-btn">永續傳承</a>
-      <a href="商品.html" class="nav-btn">商品</a>
-      <a href="三代合照.html" class="nav-btn">三代合照</a>
-      <a href="money.html" class="nav-btn">資金應用</a>
-      <a href="捐款連結.html" class="nav-btn">捐款連結</a>
+      <div class="nav-logo-placeholder">
+        <img src="images/logo.jfif" alt="Logo">
+      </div>
+
+      <div class="menu-toggle" id="mobile-menu">
+        <span></span><span></span><span></span>
+      </div>
+
+      <div class="nav-links" id="nav-list">
+        <a href="index.html" class="nav-btn">首頁</a>
+        <a href="team.html" class="nav-btn">隊員</a>
+        <a href="idea.html" class="nav-btn active">核心想法</a>
+        <a href="永續傳承.html" class="nav-btn">永續傳承</a>
+        <a href="商品.html" class="nav-btn">商品</a>
+        <a href="三代合照.html" class="nav-btn">三代合照</a>
+        <a href="money.html" class="nav-btn">資金應用</a>
+        <a href="捐款連結.html" class="nav-btn">捐款連結</a>
+      </div>
     </nav>
   </header>
   
@@ -143,10 +244,10 @@
     </div>
 
     <h2>為什麼是現在｜文化正在退潮</h2>
-    <p>在新豐的海岸邊，石滬靜靜地躺在潮間帶上，承受著每日海水的來去。石頭仍在，但築滬的人卻正隨著歲月慢慢老去。曾經，這些石牆是長者們揮灑青春的記號，他們在晨光中觀察海流、在退潮時搬運礁石，將一生的勞動與智慧堆疊成守護生計的防線。然而，隨著現代漁業轉型，這些熟悉石塊重量與潮汐規律的人，逐漸退居到記憶的角落。石滬在風化，而長者也在時間裡沉默。如果我們現在不行動，不將這些口述經驗紀錄並轉化為具體的修復參與，下一個世代對石滬的記憶，恐怕將從真實的「看見」萎縮成蒼白的「聽說」。文化正在退潮，我們必須在記憶徹底乾涸前，趕在時間前頭把故事留住。</p>
+    <p>在新豐的海岸邊，石滬靜靜地躺在潮間帶上，承受著每日海水的來去。石頭仍在，但築滬的人卻正隨著歲月慢慢老去。曾經，這些石牆是長者們揮灑青春的記號，他們在晨光中觀察海流、在退潮時搬運礁石，將一生的勞動與智慧堆疊成守護生計的防線。文化正在退潮，我們必須在記憶徹底乾涸前，趕在時間前頭把故事留住。</p>
     
     <h2>生態修復｜與海洋和諧共生</h2>
-    <p>石滬，是古人順應潮汐與地形所發展出的傳統捕魚智慧，也是先民與海共存所留下的珍貴文化結晶。透過長者與石滬的連結，我們不只完成了世代交流、文化保存與地方創生，更看見了石滬在生態復育上的深遠價值。當石滬重新搭建與修復，一塊塊石頭堆疊出的縫隙，便形成了多層次的天然棲地，不僅提供魚類棲息、覓食與繁殖的空間，也成為幼魚躲避天敵的重要庇護所。隨著潮汐來回流動，成魚得以進入石滬周邊活動並產下魚卵，孵化後的小魚則能藏身於石縫之中，提升存活機會，逐步恢復海洋生物的生存環境與族群延續。也因此，修復石滬不只是修補一項傳統文化，更是在修復海洋生命的棲地、重建沿岸生態系的平衡，讓石滬成為孕育生命、守護海洋的重要復育基地。</p>
+    <p>石滬，是古人順應潮汐與地形所發展出的傳統捕魚智慧，也是先民與海共存所留下的珍貴文化結晶。當石滬重新搭建與修復，一塊塊石頭堆疊出的縫隙，便形成了多層次的天然棲地，不僅提供魚類棲息、覓食與繁殖的空間，也成為幼魚躲避天敵的重要庇護所。修復石滬不只是修補一項傳統文化，更是在修復海洋生命的棲地。</p>
     
     <div class="image-group">
       <img src="images/石滬還在，但知道它故事的人，正在慢慢變少。.jfif" alt="長者的心願" class="content-img">
@@ -154,7 +255,7 @@
     </div>
 
     <h2>世代連結｜讓三代重新走在一起</h2>
-    <p>我們將「世代連結」設計成一場可以被參與、被複製的接力行動，讓新豐海岸成為三代人重新相遇的場域。長者世代作為文化的承載者，從被照顧的客體轉變為傳授智慧的主體，在分享潮汐知識與修復技藝的過程中找回尊嚴與被需要感；青年世代則是行動的發起者，透過社團與校園的傳承機制，將「陪伴」轉化為具體的修復勞動，讓文化在手中產生溫度；而中壯世代則扮演資源的連結者，提供社會支持與媒合力量。當三代人在同一個場域分工合作——長者指導、青年執行、中壯支援——文化便不再只是靜止的回憶，而是正在發生的生活，讓原本斷裂的關係在共同完成一件事的過程中，像石滬一樣重新穩固地長出來。</p> 
+    <p>我們將「世代連結」設計成一場可以被參與、被複製的接力行動，讓新豐海岸成為三代人重新相遇的場域。長者世代作為文化的承載者，從被照顧的客體轉變為傳授智慧的主體；青年世代則是行動的發起者，透過具體的修復勞動，讓文化在手中產生溫度。文化便不再只是靜止的回憶，而是正在發生的生活。</p> 
     
     <div class="image-group">
       <img src="images/世代連結.jfif" alt="世代連結活動" class="content-img">
@@ -162,11 +263,28 @@
     </div>
 
     <h2>地方創生｜重新被看見的起點</h2>
-    <p>石滬不只是新豐海岸線上的遺跡，它更是地方重新復甦的文化入口。我們所追求的地方創生，核心並非僅僅將海邊修飾得美觀，而是要讓石滬成為連結人與地方的橋樑。透過修復行動與故事採集，我們協助這片海岸重新被走進、被理解，讓外地人看見的不只是散落的石頭，而是背後承載的勞動記憶與地方智慧。這是一場以文化保存為核心的社會工程：當長者重新參與公共生活、青年重新投入地方事務、社區重新產生互動，地方的生命力便會隨之復甦。我們希望成為這條復甦路上的助力，讓石滬的重生帶動地方的故事與人氣，使新豐海岸不再只是地圖上的邊緣，而是充滿溫情與歷史厚度的文化地標。</p>
+    <p>石滬不只是新豐海岸線上的遺跡，它更是地方重新復甦的文化入口。這是一場以文化保存為核心的社會工程：當長者重新參與公共生活、青年重新投入地方事務、社區重新產生互動，地方的生命力便會隨之復甦。我們希望成為這條復甦路上的助力，讓石滬的重生帶動地方的故事與人氣。</p>
   </main>
 
   <footer>
     © 2026 讓石滬再現 計畫團隊
   </footer>
+
+  <script>
+    // 漢堡選單邏輯
+    const menuToggle = document.getElementById('mobile-menu');
+    const navLinks = document.getElementById('nav-list');
+
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+
+    // 點擊連結後自動關閉選單
+    document.querySelectorAll('.nav-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+      });
+    });
+  </script>
 </body>
 </html>
