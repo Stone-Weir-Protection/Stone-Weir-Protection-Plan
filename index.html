@@ -115,7 +115,11 @@
     /* --- 手機版媒體查詢 --- */
     @media (max-width: 768px) {
       .topbar { padding: 8px 15px; }
-      .nav-logo-img { height: 12px; } /* Logo 再縮小 */
+      .nav-logo-img { 
+    height: 24px !important; /* 建議設為 24-28px 比較清晰 */
+    width: auto !important;
+    max-height: 30px; 
+  }
 
       .menu-toggle { display: flex; }
 
