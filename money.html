@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <title>資金應用 - 讓石滬再現</title>
+  <style>
+    :root{ 
+      --brand:#9a382b; 
+      --bg-start:#e9a315; 
+      --bg-end:#1bade6;   
+      --line:#e8dfd3; 
+    }
+
+    body { 
+      font-family: sans-serif; 
+      margin: 0; 
+      line-height: 1.8; 
+      /* 背景設定：與其他頁面統一 */
+      background: linear-gradient(135deg, var(--bg-start) 0%, var(--bg-end) 100%);
+      background-attachment: fixed; 
+      min-height: 100vh;
+    }
+    
+    /* 導覽列：毛玻璃效果 */
+    .topbar { 
+      position: sticky; 
+      top: 0; 
+      background: rgba(255, 255, 255, 0.9); 
+      backdrop-filter: blur(10px); 
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--line); 
+      z-index: 100; 
+      padding: 10px 0; 
+    }
+
+    .nav { display:flex; justify-content:center; gap:8px; flex-wrap:wrap; max-width:1200px; margin:auto; }
+    .nav-btn { padding:8px 12px; background:rgba(255, 255, 255, 0.5); border:1px solid var(--line); border-radius:4px; text-decoration:none; color:#4b5563; font-weight:bold; font-size:13px; transition:0.3s; }
+    .nav-btn:hover, .nav-btn.active { background:var(--brand); color:white; border-color:var(--brand); }
+    
+    /* 內容容器：半透明與毛玻璃 */
+    .container { 
+      max-width:850px; 
+      margin:40px auto; 
+      background: rgba(255, 255, 255, 0.75); 
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      padding:50px; 
+      border-radius:30px; 
+      box-shadow: 0 20px 50px rgba(0,0,0,0.1); 
+    }
+    
+    .back-home { display:inline-block; margin-bottom:20px; padding:10px 20px; background:var(--brand); color:white; text-decoration:none; border-radius:6px; font-weight:bold; float:left; transition: 0.3s; }
+    .back-home:hover { background: #7a2c22; transform: translateX(-5px); }
+
+    h1 { color: var(--brand); margin-top: 0; }
+
+    /* 資金項目樣式 */
+    .item { 
+      background: rgba(255, 255, 255, 0.5);
+      border-radius: 15px;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-left: 5px solid var(--brand);
+      transition: 0.3s;
+    }
+    .item:hover {
+      background: rgba(255, 255, 255, 0.8);
+      transform: translateY(-3px);
+    }
+    .item h3 { margin-top: 0; color: #333; }
+    .item p { margin-bottom: 0; color: #555; }
+
+    /* 圖片展示 */
+    .content-img { 
+      width: 100%; 
+      height: auto; 
+      display: block; 
+      margin: 30px 0; 
+      border-radius: 15px; 
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1); 
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <nav class="nav">
+      <a href="index.html" class="nav-btn">首頁</a>
+      <a href="team.html" class="nav-btn">隊員</a>
+      <a href="idea.html" class="nav-btn">核心想法</a>
+      <a href="永續傳承.html" class="nav-btn">永續傳承</a>
+      <a href="商品.html" class="nav-btn">商品</a>
+      <a href="三代合照.html" class="nav-btn">三代合照</a>
+      <a href="money.html" class="nav-btn active">資金應用</a>
+      <a href="捐款連結.html" class="nav-btn">捐款連結</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <a href="index.html" class="back-home">← 返回主頁</a>
+    <div style="clear:both;"></div>
+    
+    <h1>資金運用規劃</h1>
+    <p>為了確保計畫能發揮最大效益，我們將經費投入在文化保存的最核心需求上。</p>
+
+    <div class="item">
+      <h3>端午餐敘與成果分享</h3>
+      <p>結合傳統節慶舉辦成果分享會，用美食與聚會將長者、青年與社區居民凝聚在一起，讓石滬故事在餐桌上延續，見證行動的成果。</p>
+    </div>
+
+    <div class="item">
+      <h3>長者參與支持系統</h3>
+      <p>提供必要的交通接送與專業保險，並安排青年陪伴協助。我們致力於降低長者走出家門的門檻，讓長輩能安心、安全地回到海岸分享智慧。</p>
+    </div>
+
+    <div class="item">
+      <h3>文化修復與數位紀錄</h3>
+      <p>購置必要的修復工具與材料，並投入經費於影像製作與文字保存。透過數位化的方式，將修築技法與地方記憶轉化為可長久流傳的教材。</p>
+    </div>
+
+    <img src="images/資金運用圖.jpg" alt="計畫成果照片" class="content-img">
+
+  </main>
+
+  <footer style="text-align: center; padding: 20px; color: #666; font-size: 0.8rem;">
+    © 2026 讓石滬再現 計畫團隊
+  </footer>
+</body>
+</html>

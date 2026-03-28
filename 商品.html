@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <title>商品回饋 - 讓石滬再現</title>
+  <style>
+    :root { --brand: #9a382b; --bg: #f6f2ea; --line: #e8dfd3; }
+
+    body { 
+      font-family: sans-serif; 
+      margin: 0; 
+      line-height: 1.8; 
+      background-image: url('images/背景.jpg'); 
+      background-size: cover; 
+      background-position: center; 
+      background-attachment: fixed; 
+      background-repeat: no-repeat; 
+      background-color: var(--bg); 
+    }
+
+    .topbar { 
+      position: sticky; 
+      top: 0; 
+      background: rgba(255, 255, 255, 0.3); 
+      backdrop-filter: blur(10px); 
+      border-bottom: 1px solid var(--line); 
+      z-index: 100; 
+      padding: 10px 0; 
+    }
+
+    .nav { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; max-width: 1200px; margin: auto; }
+    .nav-btn { padding: 8px 12px; background: #f4ece2; border: 1px solid var(--line); border-radius: 4px; text-decoration: none; color: #4b5563; font-weight: bold; font-size: 13px; transition: 0.3s; }
+    .nav-btn:hover, .nav-btn.active { background: var(--brand); color: white; border-color: var(--brand); }
+
+    .container { 
+      max-width: 900px; 
+      margin: 40px auto; 
+      background: rgba(255, 255, 255, 0.5); 
+      padding: 40px; 
+      border-radius: 20px; 
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1); 
+    }
+
+    .back-home { display: inline-block; margin-bottom: 20px; padding: 10px 20px; background: var(--brand); color: white; text-decoration: none; border-radius: 6px; font-weight: bold; transition: 0.3s; }
+
+    /* --- 簡歷區塊樣式 --- */
+    .bio-section { display: flex; gap: 25px; margin: 30px auto; flex-wrap: wrap; align-items: center; }
+    
+    .bio-photo-box { 
+      flex: 1; 
+      min-width: 200px; 
+      max-width: 250px; 
+      border-radius: 15px; 
+      overflow: hidden; 
+      border: 5px solid white; 
+      box-shadow: 0 8px 15px rgba(0,0,0,0.1); 
+    }
+    .bio-photo-box img { width: 100%; display: block; }
+    
+    .description-box { 
+      flex: 2; 
+      min-width: 300px; 
+      background: rgba(255, 255, 255, 0.4); 
+      border-left: 5px solid var(--brand); 
+      padding: 25px; 
+      text-align: left; 
+      border-radius: 8px; 
+    }
+
+    /* --- 輪播圖樣式 --- */
+    .carousel-container {
+      position: relative;
+      width: 100%;
+      max-width: 750px;
+      height: 550px;
+      margin: 30px auto;
+      overflow: hidden;
+      border-radius: 20px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+    }
+    .carousel-track { display: flex; height: 100%; transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); }
+    .carousel-slide { min-width: 100%; height: 100%; background-size: cover; background-position: center; position: relative; display: flex; align-items: flex-end; }
+
+    .slide-info {
+      width: 100%;
+      background: rgba(0, 0, 0, 0.6); 
+      backdrop-filter: blur(8px);
+      color: white;
+      padding: 20px 30px;
+      box-sizing: border-box;
+      transform: translateY(100%);
+      transition: 0.5s 0.3s;
+      border-top: 2px solid var(--brand);
+    }
+    .carousel-slide.active .slide-info { transform: translateY(0); }
+    .slide-info h4 { margin: 0 0 5px 0; color: #ffbcbc; font-size: 1.2rem; }
+    .slide-info p { margin: 0; font-size: 0.95rem; line-height: 1.5; opacity: 0.9; }
+
+    .carousel-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.8); border: none; width: 45px; height: 45px; border-radius: 50%; cursor: pointer; font-size: 20px; color: var(--brand); z-index: 20; transition: 0.3s; }
+    .carousel-btn:hover { background: var(--brand); color: white; }
+    .prev { left: 15px; }
+    .next { right: 15px; }
+
+    .video-link-box { display: block; max-width: 450px; margin: 40px auto; text-decoration: none; }
+    .video-thumb { position: relative; border-radius: 15px; overflow: hidden; background: #000; }
+    .video-thumb img { width: 100%; display: block; opacity: 0.8; }
+    .play-overlay { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: var(--brand); color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 24px; }
+  </style>
+</head>
+<body>
+
+  <header class="topbar">
+    <nav class="nav">
+    <a href="index.html" class="nav-btn">首頁</a>
+      <a href="team.html" class="nav-btn">隊員</a>
+      <a href="idea.html" class="nav-btn">核心想法</a>
+      <a href="永續傳承.html" class="nav-btn">永續傳承</a>
+      <a href="商品.html" class="nav-btn active">商品</a>
+      <a href="三代合照.html" class="nav-btn">三代合照</a>
+      <a href="money.html" class="nav-btn">資金應用</a>
+      <a href="捐款連結.html" class="nav-btn">捐款連結</a>
+    </nav>
+  </header>
+
+<main class="container">
+    <a href="index.html" class="back-home">← 返回主頁</a>
+    <h1 style="text-align:center;">感恩回饋商品</h1>
+
+    <div style="margin:20px 0 40px 0; padding:20px; background:rgba(255, 244, 239, 0.7); border-radius:10px; text-align:center;">
+      <h3 style="color:var(--brand); margin-top:0;">支持方案說明</h3>
+      <h3 style="margin-bottom:0;">單筆捐款滿 2,000 元以上，即回饋感恩字畫一幅。</h3>
+    </div>
+      <a class="video-link-box" href="https://youtube.com/shorts/eQgce_RrXW4" target="_blank">
+      <div class="video-thumb">
+        <img src="https://img.youtube.com/vi/eQgce_RrXW4/maxresdefault.jpg" alt="影片">
+        <div class="play-overlay">▶</div>
+      </div>
+    </a>
+    <h2 style="color: var(--brand); text-align:center;">創作者 江宥均 個人簡歷</h2>
+    
+    <div class="bio-section">
+        <div class="bio-photo-box">
+            <img src="images/江宥均作品.jfif" alt="江宥均">
+        </div>
+        
+        <div class="description-box">
+            <h2 style="margin-top:0;">竹東高中海客社社長</h2>
+            <p>全國美展書法類－特優<br>國語文競賽寫字組蟬聯三屆－特優<br>108年翠竹杯書法比賽－優選<br>新竹文化局聯展特優<br>同濟會書法比賽—第三名<br>2019宋展河—盃入選<br>振興盃書法比賽—第一名</p>
+        </div>
+    </div>
+
+    <h3 style="color:var(--brand); margin-top:50px; text-align:center;">作品集展示</h3>
+    <div class="carousel-container" id="carousel1">
+        <button class="carousel-btn prev" onclick="moveCarousel('carousel1', -1)">❮</button>
+        <button class="carousel-btn next" onclick="moveCarousel('carousel1', 1)">❯</button>
+        <div class="carousel-track">
+            <div class="carousel-slide active" style="background-image: url('images/展品1.jpg');">
+                <div class="slide-info">
+                    <h4>丙午新春限定芙莉蓮</h4>
+                    <p>利用傳統書法結合現代行銷吸引年輕人目光。</p>
+                </div>
+            </div>
+            <div class="carousel-slide" style="background-image: url('images/展品2.jpg');">
+                <div class="slide-info">
+                    <h4>客定春聯</h4>
+                    <p>提供客製化創作深入心靈。</p>
+                </div>
+            </div>
+            <div class="carousel-slide" style="background-image: url('images/展品3.jpg');">
+                <div class="slide-info">
+                    <h4>六祖壇經句</h4>
+                    <p>從書法中了解生命的意義。</p>
+                </div>
+            </div>
+            <div class="carousel-slide" style="background-image: url('images/展品4.jpg');">
+                <div class="slide-info">
+                    <h4>金剛經句</h4>
+                    <p>臨摹碑帖並進行創新。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+
+    <h3 style="color:var(--brand); margin-top:40px; text-align:center;">交流經歷</h3>
+    <div class="carousel-container" id="carousel2">
+        <button class="carousel-btn prev" onclick="moveCarousel('carousel2', -1)">❮</button>
+        <button class="carousel-btn next" onclick="moveCarousel('carousel2', 1)">❯</button>
+        <div class="carousel-track">
+            <div class="carousel-slide active" style="background-image: url('images/經歷1.jpg');">
+                <div class="slide-info"><h4>台灣宜龍二代:陳世河先生</h4></div>
+            </div>
+            <div class="carousel-slide" style="background-image: url('images/經歷2.jpg');">
+                <div class="slide-info"><h4>新豐石滬文化協會理事長:葉期忠先生</h4></div>
+            </div>
+            <div class="carousel-slide" style="background-image: url('images/經歷3.jpg');">
+                <div class="slide-info"><h4>農業部水產試驗所研究員:陳均龍先生</h4></div>
+            </div>
+            <div class="carousel-slide" style="background-image: url('images/經歷4.jpg');">
+                <div class="slide-info"><h4>中研院研究員:何東垣先生</h4></div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<script>
+  const carouselStates = {
+    carousel1: { current: 0, timer: null },
+    carousel2: { current: 0, timer: null }
+  };
+
+  function moveCarousel(id, step) {
+    const container = document.getElementById(id);
+    const track = container.querySelector('.carousel-track');
+    const slides = track.querySelectorAll('.carousel-slide');
+    const totalSlides = slides.length;
+
+    slides[carouselStates[id].current].classList.remove('active');
+    carouselStates[id].current = (carouselStates[id].current + step + totalSlides) % totalSlides;
+    slides[carouselStates[id].current].classList.add('active');
+
+    const offset = carouselStates[id].current * 100;
+    track.style.transform = `translateX(-${offset}%)`;
+
+    startAutoPlay(id);
+  }
+
+  function startAutoPlay(id) {
+    if (carouselStates[id].timer) clearInterval(carouselStates[id].timer);
+    carouselStates[id].timer = setInterval(() => {
+      moveCarousel(id, 1);
+    }, 2500); 
+  }
+
+  window.onload = function() {
+    startAutoPlay('carousel1');
+    startAutoPlay('carousel2');
+  };
+</script>
+
+</body>
+</html>

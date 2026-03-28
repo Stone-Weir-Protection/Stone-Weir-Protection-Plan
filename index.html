@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <link rel="icon" href="images/logo.jfif" type="image/png">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>讓石滬再現，讓長者再笑 | 首頁</title>
+  <style>
+    :root { 
+      --bg-light: #f6f2ea; 
+      --paper: #ffffff; 
+      --brand: #9a382b; 
+      --nav-bg: rgba(255, 255, 255, 0.7);
+    }
+
+    body { 
+      margin: 0; 
+      font-family: "Microsoft JhengHei", sans-serif; 
+      color: #333; 
+      line-height: 1.8;
+      
+      /* --- 全螢幕圖片背景 --- */
+      background-image: url('images/index背景.jpg'); 
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+      background-color: var(--bg-light); 
+    }
+    
+    /* --- 導覽列 --- */
+    .topbar { 
+      position: sticky; 
+      top: 0; 
+      z-index: 100; 
+      background: var(--nav-bg); 
+      backdrop-filter: blur(15px); 
+      border-bottom: 1px solid rgba(0,0,0,0.05); 
+      padding: 10px 20px; 
+    }
+
+    .nav { 
+      display: flex; 
+      align-items: center; 
+      justify-content: space-between; 
+      max-width: 1200px; 
+      margin: auto; 
+    }
+
+    .nav-logo-box {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      gap: 10px;
+    }
+
+    .nav-logo-img {
+      height: 45px;
+      width: auto;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .nav-btn { 
+      padding: 8px 16px; 
+      background: rgba(255, 255, 255, 0.4); 
+      border: 1px solid rgba(0,0,0,0.1); 
+      border-radius: 6px; 
+      text-decoration: none; 
+      color: #4b5563; 
+      font-weight: bold; 
+      font-size: 14px; 
+      transition: 0.3s; 
+    }
+    .nav-btn:hover, .nav-btn.active { background: var(--brand); color: white; border-color: var(--brand); }
+    
+    /* --- 英雄區塊 --- */
+    .hero { 
+      background: rgba(255, 255, 255, 0.1); 
+      backdrop-filter: blur(8px);
+      padding: 60px 20px; 
+      text-align: center; 
+      min-height: 850px; 
+      margin: 40px auto; 
+      max-width: 1100px; 
+      border-radius: 40px; 
+      box-shadow: 0 20px 50px rgba(0,0,0,0.15); 
+    }
+
+    /* 標題圖 */
+    .hero-title-img-box {
+      width: 100%;
+      max-width: 800px; 
+      margin: 0 auto 30px auto; 
+      display: flex;
+      justify-content: center; 
+      align-items: center;
+    }
+
+    .hero-title-img {
+      width: 100%;
+      max-width: 650px; 
+      height: auto; 
+      display: block;
+      filter: drop-shadow(0 4px 10px rgba(0,0,0,0.2)); 
+    }
+
+    /* 文字框 */
+    .hero-description-box {
+      background: rgba(255, 255, 255, 0.6); 
+      backdrop-filter: blur(5px);
+      max-width: 750px;
+      margin: 0 auto 40px auto; 
+      padding: 15px 25px;
+      border-radius: 15px;
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.05);
+    }
+
+    .hero-description-box p {
+      margin: 0;
+      font-size: 1.1rem;
+      color: #4a4a4a;
+      font-weight: 500;
+    }
+
+    /* 輪播圖 */
+    .carousel-container {
+      position: relative; 
+      width: 100%;
+      max-width: 850px; 
+      height: 480px;    
+      margin: 0 auto;
+      overflow: hidden;
+      border-radius: 25px; 
+      box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+      background: white; 
+      border: 12px solid white; 
+    }
+    
+    .carousel-track {
+      display: flex;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .carousel-slide {
+      min-width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      align-items: flex-end; 
+      justify-content: center;
+    }
+    
+    .slide-label {
+      background: rgba(0,0,0,0.6);
+      color: white;
+      padding: 8px 25px;
+      margin-bottom: 30px;
+      border-radius: 50px;
+      font-size: 0.95rem;
+    }
+
+    .carousel-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255,255,255,0.9);
+      border: none;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      cursor: pointer;
+      color: var(--brand);
+      z-index: 30; 
+      transition: 0.3s;
+    }
+    .carousel-btn:hover { background: var(--brand); color: white; }
+    .prev { left: 20px; }
+    .next { right: 20px; }
+
+    .carousel-logo {
+      position: absolute;
+      left: 30px; 
+      bottom: 30px; 
+      height: 65px; 
+      width: auto; 
+      z-index: 40; 
+      filter: drop-shadow(0 0 10px rgba(255,255,255,0.8));
+    }
+
+    .btn-main { 
+      display: inline-block; 
+      padding: 18px 50px; 
+      background: var(--brand); 
+      color: white; 
+      text-decoration: none; 
+      border-radius: 100px; 
+      font-weight: 800; 
+      font-size: 1.2rem;
+      margin-top: 50px; 
+      transition: 0.4s;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="topbar">
+    <nav class="nav">
+      <div class="nav-logo-box">
+  <a href="https://www.oldpeople.org.tw/pop/" target="_blank">
+    <img src="images/老盟logo.png" alt="老盟 Logo" class="nav-logo-img">
+  </a>
+
+  <a href="https://www.ctsh.hcc.edu.tw/" target="_blank">
+    <img src="images/ctsh.png" alt="CTSH Logo" class="nav-logo-img">
+  </a>
+</div>
+
+      <div class="nav-links">
+        <a href="index.html" class="nav-btn active">首頁</a>
+        <a href="team.html" class="nav-btn">隊員</a>
+        <a href="idea.html" class="nav-btn">核心想法</a>
+        <a href="永續傳承.html" class="nav-btn">永續傳承</a>
+        <a href="商品.html" class="nav-btn">商品</a>
+        <a href="三代合照.html" class="nav-btn">三代合照</a>
+        <a href="money.html" class="nav-btn">資金應用</a>
+        <a href="捐款連結.html" class="nav-btn">捐款連結</a>
+      </div>
+    </nav>
+  </header>
+
+  <main> 
+    <section class="hero">
+      
+      <div class="hero-title-img-box">
+        <img src="images/標題.png" alt="讓石滬再現，讓長者再笑" class="hero-title-img">
+      </div>
+
+      <div class="hero-description-box">
+        <h2>一群高中生，陪伴長者走回海邊，把正在消逝的文化重新帶回生活。這不只是一次活動，而是一條由青年、長者與社會一起走出的路。</h2>
+      </div>
+      
+      <div class="carousel-container">
+        <button class="carousel-btn prev" onclick="move(-1)">❮</button>
+        <button class="carousel-btn next" onclick="move(1)">❯</button>
+        
+        <img src="images/logo.jfif" alt="團隊 Logo" class="carousel-logo">
+
+        <div class="carousel-track" id="track">
+          <div class="carousel-slide" style="background-image: url('images/合照.jfif');">
+            <div class="slide-label">團隊大合照</div>
+          </div>
+          <div class="carousel-slide" style="background-image: url('images/世代連結.jfif');">
+            <div class="slide-label">科學實驗傳承</div>
+          </div>
+          <div class="carousel-slide" style="background-image: url('images/頭條.jfif');">
+            <div class="slide-label">世代傳承活動</div>
+          </div>
+          <div class="carousel-slide" style="background-image: url('images/大合照.jpg');">
+            <div class="slide-label">海洋素養創新教學競賽特優</div>
+          </div>
+        </div>
+      </div>
+      
+      <a href="idea.html" class="btn-main">開啟行動故事 →</a>
+    </section>
+  </main>
+
+  <script>
+    let current = 0;
+    const track = document.getElementById('track');
+    const slides = document.querySelectorAll('.carousel-slide');
+    const total = slides.length;
+    let timer;
+
+    function update() {
+      track.style.transform = `translateX(-${current * 100}%)`;
+    }
+
+    function move(step) {
+      current = (current + step + total) % total;
+      update();
+      startTimer(); 
+    }
+
+    function startTimer() {
+      clearInterval(timer);
+      timer = setInterval(() => {
+        current = (current + 1) % total;
+        update();
+      }, 4000); 
+    }
+
+    window.onload = startTimer;
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <title>隊員介紹 - 讓石滬再現</title>
+  <style>
+    :root{ --brand:#9a382b; --bg:#f6f2ea; --line:#e8dfd3; }
+    
+    /* --- 核心背景設置 --- */
+    body { 
+        font-family: sans-serif; 
+        margin: 0; 
+        line-height: 1.8; 
+        background-color: var(--bg); 
+        background-image: url('images/teambackground.jpg'); 
+        background-repeat: no-repeat;
+        background-size: cover; 
+        background-position: center center; 
+        background-attachment: fixed; 
+    }
+    
+    /* --- 導覽列 --- */
+    .topbar{ position:sticky; top:0; background:white; border-bottom:1px solid var(--line); z-index:100; padding:10px 0; }
+    .nav { display:flex; justify-content:center; gap:8px; flex-wrap:wrap; max-width:1200px; margin:auto; }
+    .nav-btn { padding:8px 12px; background:#f4ece2; border:1px solid var(--line); border-radius:4px; text-decoration:none; color:#4b5563; font-weight:bold; font-size:13px; transition:0.3s; }
+    .nav-btn:hover, .nav-btn.active { background:var(--brand); color:white; border-color:var(--brand); }
+
+    /* --- 主要容器與通用元件 --- */
+    .container { max-width:1100px; margin:40px auto; padding:0 20px; }
+    .back-home { display:inline-block; margin-bottom:20px; padding:10px 20px; background:var(--brand); color:white; text-decoration:none; border-radius:6px; font-weight:bold; transition: 0.3s; }
+    .back-home:hover { background: #7a2c22; transform: translateX(-5px); }
+
+    /* --- 新增：團隊總體介紹文字框樣式 --- */
+    .team-intro-box {
+        background: rgba(255, 255, 255, 0.9); /* 保持白色半透明質感 */
+        padding: 1px;
+        border-radius: 20px;
+        border: 1px solid var(--line);
+        box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+        margin-bottom: 40px; /* 與下方 Grid 保持距離 */
+        text-align: center; /* 文字居中 */
+    }
+    .team-intro-box p {
+        margin: 0;
+        color: #555;
+        font-size: 1.1rem;
+        max-width: 800px; /* 限制文字寬度，方便閱讀 */
+        margin: 0 auto; /* 區塊居中 */
+    }
+
+    /* --- 核心互動樣式 (照片圓圈與遮罩) --- */
+    .team-photo-wrapper { 
+        position: relative; 
+        width: 180px;
+        height: 180px;
+        margin: 0 auto 25px auto;
+        border-radius: 50%;
+        overflow: hidden; 
+        border: 5px solid white;
+        box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+        cursor: pointer;
+    }
+    
+    .team-photo { 
+        width: 100%;
+        height: 100%;
+        object-fit: cover; 
+        display: block;
+        transition: 0.5s ease;
+    }
+
+    .intro-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(154, 56, 43, 0.9); 
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 15px;
+        box-sizing: border-box;
+        font-size: 0.85rem;
+        line-height: 1.5;
+        text-align: center;
+        opacity: 0; 
+        transition: 0.5s ease;
+        border-radius: 50%;
+    }
+
+    .team-photo-wrapper:hover .intro-overlay { opacity: 1; }
+    .team-photo-wrapper:hover .team-photo { transform: scale(1.1); }
+
+    /* --- 團隊 Grid 與卡片樣式 --- */
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 30px; align-items: stretch; }
+    
+    .card { background: rgba(255, 255, 255, 0.95); padding: 35px 25px; border-radius: 20px; border: 1px solid var(--line); text-align: center; transition: 0.3s ease; display: flex; flex-direction: column; }
+    .card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(154,56,43,0.15); }
+    .card h3 { color: var(--brand); margin: 0 0 10px 0; font-size: 1.4rem; }
+    .card p { margin: 0; color: #555; font-size: 0.95rem; }
+    .card strong { color: var(--brand); display: block; margin-bottom: 5px; }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <nav class="nav">
+    <a href="index.html" class="nav-btn">首頁</a>
+      <a href="team.html" class="nav-btn active">隊員</a>
+      <a href="idea.html" class="nav-btn">核心想法</a>
+      <a href="永續傳承.html" class="nav-btn">永續傳承</a>
+      <a href="商品.html" class="nav-btn">商品</a>
+      <a href="三代合照.html" class="nav-btn">三代合照</a>
+      <a href="money.html" class="nav-btn">資金應用</a>
+      <a href="捐款連結.html" class="nav-btn">捐款連結</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <a href="index.html" class="back-home">← 返回主頁</a>
+  
+    <div class="team-intro-box">
+        <h1>
+            核心團隊成員
+        </h1>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <div class="team-photo-wrapper">
+            <img src="images/郭栩廷.jfif" alt="郭栩廷" class="team-photo">
+            <div class="intro-overlay">負責整體計畫的策劃，希望能讓石滬文化被更多人看見。</div>
+        </div>
+        <h3>郭栩廷</h3>
+        <p><strong>團隊隊長</strong>計畫統籌與議題思考</p>
+      </div>
+
+      <div class="card">
+        <div class="team-photo-wrapper">
+            <img src="images/江宥均.jfif" alt="江宥均" class="team-photo">
+            <div class="intro-overlay">熱愛藝術與美學，負責將石滬的文化底蘊轉化為視覺藝術。</div>
+        </div>
+        <h3>江宥均</h3>
+        <p><strong>團隊成員</strong>書畫藝術與文化美感</p>
+      </div>
+
+      <div class="card">
+        <div class="team-photo-wrapper">
+            <img src="images/林筱喬.jfif" alt="林筱喬" class="team-photo">
+            <div class="intro-overlay">專注於社會議題，致力於推動青年參與地方創生。</div>
+        </div>
+        <h3>林筱喬</h3>
+        <p><strong>團隊成員</strong>社會議題與行動參與</p>
+      </div>
+
+      <div class="card">
+        <div class="team-photo-wrapper">
+            <img src="images/廖鴻瑜.jfif" alt="廖鴻瑜" class="team-photo">
+            <div class="intro-overlay">深耕地方行動，連結社區與團隊，建立穩固的合作關係。</div>
+        </div>
+        <h3>廖鴻瑜</h3>
+        <p><strong>團隊成員</strong>地方行動與公共關懷</p>
+      </div>
+
+      <div class="card">
+        <div class="team-photo-wrapper">
+            <img src="images/簡美琪2.jfif" alt="簡美琪" class="team-photo">
+            <div class="intro-overlay">負責活動主持，用語言傳遞石滬的故事與感動。</div>
+        </div>
+        <h3>簡美琪</h3>
+        <p><strong>團隊成員</strong>活動表達／主持協作</p>
+      </div>
+
+      <div class="card">
+        <div class="team-photo-wrapper">
+            <img src="images/吳艾芸2.jfif" alt="吳艾芸" class="team-photo">
+            <div class="intro-overlay">擅長捕捉瞬間，負責用鏡頭記錄修護石滬的點點滴滴。</div>
+        </div>
+        <h3>吳艾芸</h3>
+        <p><strong>團隊成員</strong>影像紀錄／影片剪輯</p>
+      </div>
+
+      <div class="card">
+        <div class="team-photo-wrapper">
+            <img src="images/邱婗恩2.jfif" alt="邱婗恩" class="team-photo">
+            <div class="intro-overlay">喜愛動手實作，負責攤位規劃與充滿溫度的手作體驗。</div>
+        </div>
+        <h3>邱婗恩</h3>
+        <p><strong>團隊成員</strong>手作實作／攤位互動</p>
+      </div>
+
+      <div class="card">
+        <div class="team-photo-wrapper">
+            <img src="images/趙致衡.jfif" alt="趙致衡" class="team-photo">
+            <div class="intro-overlay">線上經營行銷，網路公關。</div>
+        </div>
+        <h3>趙致衡</h3>
+        <p><strong>團隊成員</strong>前端應用／網站架設</p>
+      </div>
+    </div>
+  </main>
+</body>
+</html>
