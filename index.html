@@ -60,15 +60,22 @@
     .menu-toggle {
       display: none;
       flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 40px;
+      height: 40px;
+      background: var(--brand); 
+      border-radius: 6px;
       cursor: pointer;
-      gap: 5px;
+      gap: 4px;
+      z-index: 1100;
     }
 
     .menu-toggle span {
       display: block;
-      width: 25px;
+      width: 22px;
       height: 3px;
-      background: var(--brand);
+      background: white;
       transition: 0.3s;
     }
 
@@ -101,6 +108,16 @@
       max-width: 1100px; 
       border-radius: 40px; 
       box-shadow: 0 20px 50px rgba(0,0,0,0.15); 
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .hero-title-img-box {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      margin-bottom: 30px;
     }
 
     .hero-title-img {
@@ -113,9 +130,14 @@
     .hero-description-box {
       background: rgba(255, 255, 255, 0.6); 
       max-width: 750px;
-      margin: 30px auto; 
+      margin: 0 auto 30px auto; 
       padding: 15px 25px;
       border-radius: 15px;
+    }
+
+    .hero-description-box h2 {
+      font-size: 1.2rem;
+      margin: 0;
     }
 
     /* --- 輪播圖 --- */
@@ -161,8 +183,8 @@
       transform: translateY(-50%);
       background: rgba(255,255,255,0.9);
       border: none;
-      width: 50px;
-      height: 50px;
+      width: 40px;
+      height: 40px;
       border-radius: 50%;
       cursor: pointer;
       color: var(--brand);
@@ -188,91 +210,66 @@
       margin-top: 40px; 
     }
 
-    /* --- 響應式手機版優化 (置中加強版) --- */
-/* --- 響應式手機版優化 (漢堡選單強化版) --- */
-@media (max-width: 768px) {
-    /* 1. 讓導覽列保持高度並置中內容 */
-    .nav {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        height: 50px; /* 固定高度防止擠壓 */
-    }
+    /* --- 手機版媒體查詢 (置中與縮小樣式) --- */
+    @media (max-width: 768px) {
+      .topbar { padding: 8px 15px; }
+      
+      .nav-logo-img { height: 32px; } /* Logo 縮小 */
 
-    /* 2. 縮小 Logo */
-    .nav-logo-img {
-        height: 30px; 
-        width: auto;
-    }
+      .menu-toggle { display: flex; } /* 顯示漢堡 */
 
-    /* 3. 漢堡按鈕強化 (確保看得到) */
-    .menu-toggle {
-        display: flex; 
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        width: 40px;
-        height: 40px;
-        background: var(--brand); /* 給它一個深色背景框 */
-        border-radius: 5px;
-        gap: 4px;
-        z-index: 1100; /* 確保在最前方 */
-    }
-
-    .menu-toggle span {
-        width: 25px;
-        height: 3px;
-        background: white; /* 線條改為白色，與深色框對比 */
-        display: block;
-    }
-
-    /* 4. 下拉選單置中 */
-    .nav-links {
+      .nav-links {
         display: none; 
         flex-direction: column;
         position: absolute;
-        top: 60px; /* 在導覽列下方 */
+        top: 60px;
         left: 50%;
-        transform: translateX(-50%); /* 水平置中 */
+        transform: translateX(-50%);
         background: white;
         width: 90%;
         padding: 20px 0;
         border-radius: 15px;
         box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        gap: 8px;
         z-index: 1050;
-    }
+      }
 
-    .nav-links.active {
-        display: flex;
-    }
+      .nav-links.active { display: flex; }
 
-    .nav-btn {
-        width: 80%;
-        margin: 5px auto;
+      .nav-btn {
+        width: 85%;
+        margin: 0 auto;
         text-align: center;
-        font-size: 16px; /* 手機版字稍微大一點好按 */
-        padding: 12px;
-    }
+        padding: 12px 0;
+      }
 
-    /* 5. 英雄區塊與圖片置中 */
-    .hero {
-        padding: 20px 10px;
-        text-align: center;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
+      .hero {
+        padding: 30px 15px;
+        margin: 20px 10px;
+        min-height: auto;
+      }
 
-    .hero-title-img {
-        max-width: 80%; /* 標題圖縮小一點 */
-        height: auto;
-    }
+      .hero-title-img { max-width: 280px; } /* 標題圖縮小 */
 
-    .carousel-container {
-        height: 220px; /* 輪播圖高度調小 */
-        width: 95%;
+      .hero-description-box h2 { font-size: 1rem; }
+
+      .carousel-container {
+        height: 230px; 
+        border: 6px solid white; 
+      }
+
+      .carousel-logo {
+        height: 35px;
+        left: 12px;
+        bottom: 12px;
+      }
+
+      .btn-main {
+        padding: 15px 40px;
+        font-size: 1rem;
+        margin-top: 30px;
+      }
     }
-}
   </style>
 </head>
 <body>
@@ -281,10 +278,10 @@
     <nav class="nav">
       <div class="nav-logo-box">
         <a href="https://www.oldpeople.org.tw/pop/" target="_blank">
-          <img src="images/老盟logo.png" alt="老盟 Logo" class="nav-logo-img">
+          <img src="images/老盟logo.png" alt="Logo 1" class="nav-logo-img">
         </a>
         <a href="https://www.ctsh.hcc.edu.tw/" target="_blank">
-          <img src="images/ctsh.png" alt="CTSH Logo" class="nav-logo-img">
+          <img src="images/ctsh.png" alt="Logo 2" class="nav-logo-img">
         </a>
       </div>
 
@@ -310,7 +307,7 @@
   <main> 
     <section class="hero">
       <div class="hero-title-img-box">
-        <img src="images/標題.png" alt="讓石滬再現，讓長者再笑" class="hero-title-img">
+        <img src="images/標題.png" alt="標題圖" class="hero-title-img">
       </div>
 
       <div class="hero-description-box">
@@ -334,7 +331,7 @@
   </main>
 
   <script>
-    // --- 漢堡選單控制 ---
+    // 漢堡選單邏輯
     const menuToggle = document.getElementById('mobile-menu');
     const navLinks = document.getElementById('nav-list');
 
@@ -342,12 +339,7 @@
       navLinks.classList.toggle('active');
     });
 
-    // 點擊選單後自動關閉 (選用)
-    navLinks.addEventListener('click', () => {
-      navLinks.classList.remove('active');
-    });
-
-    // --- 輪播圖控制 ---
+    // 輪播圖邏輯
     let current = 0;
     const track = document.getElementById('track');
     const slides = document.querySelectorAll('.carousel-slide');
