@@ -2,77 +2,128 @@
 <html lang="zh-Hant">
 <head>
   <meta charset="utf-8">
+  <link rel="icon" href="images/logo.jfif" type="image/png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
   <title>三代大合照 - 讓石滬再現</title>
   <style>
-    :root{ 
-      --brand:#9a382b; 
-      --bg-start:#e9a315; 
-      --bg-end:#1bade6;   
-      --line:#e8dfd3; 
+    :root { 
+      --brand: #9a382b; 
+      --bg-start: #e9a315; 
+      --bg-end: #1bade6;   
+      --line: #e8dfd3; 
+      --nav-bg: rgba(255, 255, 255, 0.95);
     }
 
     body { 
-      font-family: sans-serif; 
+      font-family: "PingFang TC", "Microsoft JhengHei", sans-serif;
       margin: 0; 
       line-height: 1.8; 
       background: linear-gradient(135deg, var(--bg-start) 0%, var(--bg-end) 100%);
       background-attachment: fixed; 
       min-height: 100vh;
+      color: #333;
     }
     
+    /* --- 導覽列 --- */
     .topbar { 
       position: sticky; 
       top: 0; 
-      background: rgba(255, 255, 255, 0.9); 
-      backdrop-filter: blur(10px); 
+      background: var(--nav-bg); 
+      backdrop-filter: blur(15px); 
+      -webkit-backdrop-filter: blur(15px);
       border-bottom: 1px solid var(--line); 
-      z-index: 100; 
-      padding: 10px 0; 
+      z-index: 1000; 
+      padding: 10px 20px; 
     }
-    .nav { display:flex; justify-content:center; gap:8px; flex-wrap:wrap; max-width:1200px; margin:auto; }
-    .nav-btn { padding:8px 12px; background:rgba(255, 255, 255, 0.5); border:1px solid var(--line); border-radius:4px; text-decoration:none; color:#4b5563; font-weight:bold; font-size:13px; transition:0.3s; }
-    .nav-btn:hover, .nav-btn.active { background:var(--brand); color:white; border-color:var(--brand); }
+
+    .nav { 
+      display: flex; 
+      align-items: center; 
+      justify-content: space-between; 
+      max-width: 1200px; 
+      margin: auto; 
+    }
+
+    .nav-logo-placeholder { display: flex; align-items: center; gap: 8px; }
+    .nav-logo-placeholder img { height: 40px; width: auto; transition: 0.3s; }
+
+    /* 漢堡按鈕 */
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 38px;
+      height: 38px;
+      background: var(--brand); 
+      border-radius: 6px;
+      cursor: pointer;
+      gap: 4px;
+    }
+    .menu-toggle span { display: block; width: 20px; height: 2px; background: white; transition: 0.3s; }
+
+    .nav-links { display: flex; gap: 8px; }
+    .nav-btn { 
+      padding: 8px 12px; 
+      background: rgba(255, 255, 255, 0.5); 
+      border: 1px solid var(--line); 
+      border-radius: 4px; 
+      text-decoration: none; 
+      color: #4b5563; 
+      font-weight: bold; 
+      font-size: 13px; 
+      transition: 0.3s; 
+    }
+    .nav-btn:hover, .nav-btn.active { background: var(--brand); color: white; border-color: var(--brand); }
+
+    /* --- 彈出動畫 --- */
+    @keyframes slideDown {
+      from { opacity: 0; transform: translate(-50%, -15px); }
+      to { opacity: 1; transform: translate(-50%, 0); }
+    }
     
+    /* --- 主要容器 --- */
     .container { 
-      max-width:900px; 
-      margin:40px auto; 
-      background: rgba(255, 255, 255, 0.7); 
-      backdrop-filter: blur(10px);
-      padding:40px; 
-      border-radius:30px; 
-      text-align:center; 
-      box-shadow: 0 20px 50px rgba(0,0,0,0.1); 
+      max-width: 900px; 
+      margin: 40px auto; 
+      background: rgba(255, 255, 255, 0.75); 
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      padding: 40px; 
+      border-radius: 30px; 
+      text-align: center; 
+      box-shadow: 0 20px 50px rgba(0,0,0,0.15); 
     }
     
-    .back-home { display:inline-block; margin-bottom:20px; padding:10px 20px; background:var(--brand); color:white; text-decoration:none; border-radius:6px; font-weight:bold; float:left; transition: 0.3s; }
+    .back-home { display: inline-block; margin-bottom: 25px; padding: 10px 20px; background: var(--brand); color: white; text-decoration: none; border-radius: 6px; font-weight: bold; transition: 0.3s; }
     .back-home:hover { background: #7a2c22; transform: translateX(-5px); }
 
     /* --- 輪播圖樣式 --- */
     .slideshow-container {
       position: relative;
       max-width: 100%;
-      margin: 40px auto;
+      margin: 30px auto;
       background: white;
       padding: 10px;
       border-radius: 20px;
-      box-shadow: 0 25px 50px rgba(0,0,0,0.2);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.2);
       overflow: hidden;
     }
 
-    /* 隱藏所有圖片 */
     .mySlides {
       display: none;
-      animation: fade 0.2s; /* 淡入動畫 */
+      animation: fade 0.5s ease-in-out; 
     }
 
     .mySlides img {
       width: 100%;
       height: auto;
-      border-radius: 15px;
+      border-radius: 12px;
       display: block;
+      /* 確保在手機上圖片不會變形 */
+      object-fit: cover;
     }
 
-    /* 前進與後退按鈕 */
     .prev, .next {
       cursor: pointer;
       position: absolute;
@@ -82,59 +133,124 @@
       padding: 16px;
       color: white;
       font-weight: bold;
-      font-size: 24px;
-      transition: 0.6s ease;
-      border-radius: 0 3px 3px 0;
+      font-size: 20px;
+      transition: 0.3s;
       user-select: none;
       background-color: rgba(0,0,0,0.3);
       text-decoration: none;
+      z-index: 5;
     }
     .prev { left: 10px; border-radius: 50%; }
     .next { right: 10px; border-radius: 50%; }
     .prev:hover, .next:hover { background-color: var(--brand); }
 
-    /* 文字標題 */
     .text-overlay {
-      color: #333;
+      color: var(--brand);
       font-size: 1.2rem;
       padding: 15px 0;
       font-weight: bold;
-      color: var(--brand);
     }
 
-    /* 淡入動畫關鍵幀 */
     @keyframes fade {
-      from {opacity: .4} 
+      from {opacity: 0.6} 
       to {opacity: 1}
     }
 
-    /* 指示點 (dots) */
     .dot-container { margin-top: 15px; }
     .dot {
       cursor: pointer;
-      height: 12px;
-      width: 12px;
+      height: 10px;
+      width: 10px;
       margin: 0 5px;
       background-color: #bbb;
       border-radius: 50%;
       display: inline-block;
-      transition: background-color 0.6s ease;
+      transition: 0.3s;
     }
-    .active-dot, .dot:hover { background-color: var(--brand); }
+    .active-dot, .dot:hover { background-color: var(--brand); transform: scale(1.2); }
 
+    .quote-box {
+      font-style: italic; 
+      color: #555; 
+      margin-top: 30px; 
+      background: rgba(255, 255, 255, 0.5); 
+      padding: 20px; 
+      border-radius: 15px;
+      border-left: 5px solid var(--brand);
+    }
+
+    footer { text-align: center; padding: 30px; color: #fff; font-size: 0.9rem; text-shadow: 0 1px 3px rgba(0,0,0,0.3); }
+
+    /* --- 手機版媒體查詢 --- */
+    @media (max-width: 768px) {
+      .topbar { padding: 8px 15px; }
+      .nav-logo-placeholder img { height: 28px; }
+
+      .menu-toggle { display: flex; }
+
+      .nav-links {
+        display: none; 
+        flex-direction: column;
+        position: absolute;
+        top: 55px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: white;
+        width: 90%;
+        padding: 15px 0;
+        border-radius: 12px;
+        box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        z-index: 1050;
+        animation: slideDown 0.4s ease-out forwards;
+      }
+
+      .nav-links.active { display: flex; }
+
+      .nav-btn {
+        width: 85%;
+        margin: 4px auto;
+        text-align: center;
+        background: #f9f9f9;
+        border: none;
+        padding: 12px 0;
+      }
+
+      .container {
+        margin: 20px 15px;
+        padding: 25px 15px;
+        border-radius: 20px;
+      }
+
+      h1 { font-size: 1.8rem !important; }
+      .text-overlay { font-size: 1rem; }
+      
+      .prev, .next { padding: 12px; font-size: 16px; }
+
+      .back-home { display: block; text-align: center; margin: 0 auto 20px auto; width: fit-content; }
+    }
   </style>
 </head>
 <body>
   <header class="topbar">
     <nav class="nav">
-      <a href="index.html" class="nav-btn">首頁</a>
-      <a href="team.html" class="nav-btn">隊員</a>
-      <a href="idea.html" class="nav-btn">核心想法</a>
-      <a href="永續傳承.html" class="nav-btn">永續傳承</a>
-      <a href="商品.html" class="nav-btn">商品</a>
-      <a href="三代合照.html" class="nav-btn active">三代合照</a>
-      <a href="money.html" class="nav-btn">資金應用</a>
-      <a href="捐款連結.html" class="nav-btn">捐款連結</a>
+      <div class="nav-logo-placeholder">
+        <img src="images/logo.jfif" alt="Logo">
+      </div>
+
+      <div class="menu-toggle" id="mobile-menu">
+        <span></span><span></span><span></span>
+      </div>
+
+      <div class="nav-links" id="nav-list">
+        <a href="index.html" class="nav-btn">首頁</a>
+        <a href="team.html" class="nav-btn">隊員</a>
+        <a href="idea.html" class="nav-btn">核心想法</a>
+        <a href="永續傳承.html" class="nav-btn">永續傳承</a>
+        <a href="商品.html" class="nav-btn">商品</a>
+        <a href="三代合照.html" class="nav-btn active">三代合照</a>
+        <a href="money.html" class="nav-btn">資金應用</a>
+        <a href="捐款連結.html" class="nav-btn">捐款連結</a>
+      </div>
     </nav>
   </header>
 
@@ -142,23 +258,23 @@
     <a href="index.html" class="back-home">← 返回主頁</a>
     <div style="clear:both;"></div>
     
-    <h1 style="color:var(--brand); font-size: 2.2rem;">世代連結的瞬間</h1>
+    <h1 style="color:var(--brand); font-size: 2.2rem; margin-top: 0;">世代連結的瞬間</h1>
     <p>透過鏡頭紀錄三代在石滬海岸共同協作的珍貴畫面。</p>
     
     <div class="slideshow-container">
       
       <div class="mySlides">
-        <img src="images/合照1.jpg">
+        <img src="images/合照1.jpg" alt="三代合照1">
         <div class="text-overlay">石滬再現，情感連結</div>
       </div>
 
       <div class="mySlides">
-        <img src="images/合照2.jpg">
+        <img src="images/合照2.jpg" alt="三代合照2">
         <div class="text-overlay">青銀共創，傳承智慧</div>
       </div>
 
       <div class="mySlides">
-        <img src="images/合照3.jpg">
+        <img src="images/合照3.jpg" alt="三代合照3">
         <div class="text-overlay">守護新豐海岸的記憶</div>
       </div>
 
@@ -172,12 +288,12 @@
       <span class="dot" onclick="currentSlide(3)"></span> 
     </div>
 
-    <div style="font-style:italic; color:#666; margin-top:30px; background: rgba(154, 56, 43, 0.05); padding: 15px; border-radius: 10px;">
+    <div class="quote-box">
       「讓長者再現笑容，讓文化重拾尊嚴。」
     </div>
   </main>
 
-  <footer style="text-align: center; padding: 20px; color: #666; font-size: 0.8rem;">
+  <footer>
     © 2026 讓石滬再現 計畫團隊
   </footer>
 
@@ -211,10 +327,25 @@
       dots[slideIndex-1].className += " active-dot";
     }
 
-    // 自動輪播 (每 5 秒切換一次)
+    // 自動輪播 (每 2.5 秒切換一次)
     setInterval(function() {
       plusSlides(1);
     }, 2500);
+
+    // 漢堡選單邏輯
+    const menuToggle = document.getElementById('mobile-menu');
+    const navLinks = document.getElementById('nav-list');
+
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+
+    // 點擊連結後自動關閉選單
+    document.querySelectorAll('.nav-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+      });
+    });
   </script>
 </body>
 </html>
