@@ -1,21 +1,22 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
+
 <head>
   <meta charset="utf-8">
   <link rel="icon" href="images/logo.jfif" type="image/png">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-  <title>永續傳承 - 讓石滬再現</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>永續傳承 - 讓石滬再現，讓長者再笑</title>
   <style>
-    :root { 
-      --brand: #9a382b; 
-      --bg: #f6f2ea; 
-      --line: #e8dfd3; 
+    :root {
+      --brand: #9a382b;
+      --bg: #f6f2ea;
+      --line: #e8dfd3;
       --nav-bg: rgba(255, 255, 255, 0.95);
     }
-  
+
     body {
       font-family: "PingFang TC", "Microsoft JhengHei", sans-serif;
-      background-image: url('images/index背景.jpg'); 
+      background-image: url('images/index背景.jpg');
       background-size: cover;
       background-attachment: fixed;
       background-position: center;
@@ -23,7 +24,7 @@
       line-height: 1.8;
       color: #333;
     }
-  
+
     /* --- 導覽列 --- */
     .topbar {
       position: sticky;
@@ -36,16 +37,25 @@
       padding: 10px 20px;
     }
 
-    .nav { 
-      display: flex; 
-      align-items: center; 
-      justify-content: space-between; 
-      max-width: 1200px; 
-      margin: auto; 
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: auto;
     }
 
-    .nav-logo-placeholder { display: flex; align-items: center; gap: 8px; }
-    .nav-logo-placeholder img { height: 40px; width: auto; transition: 0.3s; }
+    .nav-logo-placeholder {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .nav-logo-placeholder img {
+      height: 40px;
+      width: auto;
+      transition: 0.3s;
+    }
 
     /* 漢堡按鈕 */
     .menu-toggle {
@@ -55,33 +65,57 @@
       align-items: center;
       width: 38px;
       height: 38px;
-      background: var(--brand); 
+      background: var(--brand);
       border-radius: 6px;
       cursor: pointer;
       gap: 4px;
     }
-    .menu-toggle span { display: block; width: 20px; height: 2px; background: white; transition: 0.3s; }
 
-    .nav-links { display: flex; gap: 8px; }
-    .nav-btn { 
-      padding: 8px 12px; 
-      background: rgba(255, 255, 255, 0.5); 
-      border: 1px solid var(--line); 
-      border-radius: 4px; 
-      text-decoration: none; 
-      color: #4b5563; 
-      font-weight: bold; 
-      font-size: 13px; 
-      transition: 0.3s; 
+    .menu-toggle span {
+      display: block;
+      width: 20px;
+      height: 2px;
+      background: white;
+      transition: 0.3s;
     }
-    .nav-btn:hover, .nav-btn.active { background: var(--brand); color: white; border-color: var(--brand); }
+
+    .nav-links {
+      display: flex;
+      gap: 8px;
+    }
+
+    .nav-btn {
+      padding: 8px 12px;
+      background: rgba(255, 255, 255, 0.5);
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      text-decoration: none;
+      color: #4b5563;
+      font-weight: bold;
+      font-size: 13px;
+      transition: 0.3s;
+    }
+
+    .nav-btn:hover,
+    .nav-btn.active {
+      background: var(--brand);
+      color: white;
+      border-color: var(--brand);
+    }
 
     /* --- 彈出動畫 --- */
     @keyframes slideDown {
-      from { opacity: 0; transform: translate(-50%, -15px); }
-      to { opacity: 1; transform: translate(-50%, 0); }
+      from {
+        opacity: 0;
+        transform: translate(-50%, -15px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translate(-50%, 0);
+      }
     }
-  
+
     /* --- 主要容器 --- */
     .container {
       max-width: 850px;
@@ -91,74 +125,139 @@
       -webkit-backdrop-filter: blur(12px);
       padding: 40px;
       border-radius: 30px;
-      box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
     }
-  
-    .back-home { 
-      display: inline-block; 
-      margin-bottom: 25px; 
-      padding: 10px 20px; 
-      background: var(--brand); 
-      color: white; 
-      text-decoration: none; 
-      border-radius: 6px; 
-      font-weight: bold; 
+
+    .back-home {
+      display: inline-block;
+      margin-bottom: 25px;
+      padding: 10px 20px;
+      background: var(--brand);
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: bold;
       transition: 0.3s;
     }
-    .back-home:hover { background: #7a2c22; transform: translateX(-5px); }
 
-    h1 { color: var(--brand); margin-top: 0; font-size: 2.2rem; text-align: center; }
-    
-    h3 { 
-      color: var(--brand); 
-      border-left: 5px solid var(--brand); 
-      padding-left: 15px; 
+    .back-home:hover {
+      background: #7a2c22;
+      transform: translateX(-5px);
+    }
+
+    h1 {
+      color: var(--brand);
+      margin-top: 0;
+      font-size: 2.2rem;
+      text-align: center;
+    }
+
+    h3 {
+      color: var(--brand);
+      border-left: 5px solid var(--brand);
+      padding-left: 15px;
       margin-top: 40px;
       font-size: 1.4rem;
     }
 
-    p { margin-bottom: 20px; text-align: justify; }
-
-    /* 圖片樣式優化 */
-    .content-img { 
-      width: 100%; 
-      height: auto; 
-      display: block; 
-      margin: 40px 0; 
-      border-radius: 20px; 
-      box-shadow: 0 10px 30px rgba(0,0,0,0.2); 
+    p {
+      margin-bottom: 20px;
+      text-align: justify;
     }
 
-    footer { text-align: center; padding: 40px; color: #fff; font-size: 0.9rem; text-shadow: 0 2px 4px rgba(0,0,0,0.5); }
+    /* 圖片樣式優化 */
+    .content-img {
+      width: 100%;
+      height: auto;
+      display: block;
+      margin: 40px 0;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px;
+      color: #fff;
+      font-size: 0.9rem;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    }
 
     /* --- 手機版媒體查詢 --- */
     @media (max-width: 768px) {
-      .topbar { padding: 8px 15px; }
-      .nav-logo-placeholder img { height: 28px; }
-      .menu-toggle { display: flex; }
+      .topbar {
+        padding: 8px 15px;
+      }
+
+      .nav-logo-placeholder img {
+        height: 28px;
+      }
+
+      .menu-toggle {
+        display: flex;
+      }
 
       .nav-links {
-        display: none; flex-direction: column; position: absolute; top: 55px; left: 50%; transform: translateX(-50%);
-        background: white; width: 90%; padding: 15px 0; border-radius: 12px; box-shadow: 0 15px 35px rgba(0,0,0,0.2); z-index: 1050;
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 55px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: white;
+        width: 90%;
+        padding: 15px 0;
+        border-radius: 12px;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        z-index: 1050;
         animation: slideDown 0.4s ease-out forwards;
       }
-      .nav-links.active { display: flex; }
-      .nav-btn { width: 85%; margin: 4px auto; text-align: center; background: #f9f9f9; border: none; padding: 12px 0; }
 
-      .container { margin: 20px 15px; padding: 30px 20px; border-radius: 20px; }
-      h1 { font-size: 1.8rem; }
-      h3 { font-size: 1.2rem; margin-top: 30px; }
-      .back-home { display: block; text-align: center; width: fit-content; margin: 0 auto 25px auto; }
+      .nav-links.active {
+        display: flex;
+      }
+
+      .nav-btn {
+        width: 85%;
+        margin: 4px auto;
+        text-align: center;
+        background: #f9f9f9;
+        border: none;
+        padding: 12px 0;
+      }
+
+      .container {
+        margin: 20px 15px;
+        padding: 30px 20px;
+        border-radius: 20px;
+      }
+
+      h1 {
+        font-size: 1.8rem;
+      }
+
+      h3 {
+        font-size: 1.2rem;
+        margin-top: 30px;
+      }
+
+      .back-home {
+        display: block;
+        text-align: center;
+        width: fit-content;
+        margin: 0 auto 25px auto;
+      }
     }
   </style>
 </head>
+
 <body>
   <header class="topbar">
     <nav class="nav">
       <div class="nav-logo-placeholder">
         <img src="images/logo.jfif" alt="Logo">
       </div>
-      
+
       <div class="menu-toggle" id="mobile-menu">
         <span></span><span></span><span></span>
       </div>
@@ -178,10 +277,12 @@
 
   <main class="container">
     <a href="index.html" class="back-home">← 返回主頁</a>
-    
+
     <h1>永續傳承｜讓行動持續</h1>
-    
-    <p>我們希望這項行動不是一次性的活動，而是能夠持續接力的青年行動計畫。透過社團與校園接力，我們會把流程整理成可複製的行動模式，讓學弟妹能學會如何邀請長者、如何安排陪伴、如何在海岸安全地共同完成任務，讓「石滬」不只是文化資產，更成為世代共同守護的生活記憶。</p>
+
+    <p>
+      我們希望這項行動不是一次性的活動，而是能夠持續接力的青年行動計畫。透過社團與校園接力，我們會把流程整理成可複製的行動模式，讓學弟妹能學會如何邀請長者、如何安排陪伴、如何在海岸安全地共同完成任務，讓「石滬」不只是文化資產，更成為世代共同守護的生活記憶。
+    </p>
 
     <h3>建立接力機制</h3>
     <p>把每一次行動的流程、注意事項、分工表整理成手冊，建立標準化 SOP 與培訓制度，讓下一屆能直接上手，降低摸索成本。同時透過經驗分享與回饋機制，持續優化行動內容，讓每一次接力都比前一次更成熟、更完善。</p>
@@ -200,12 +301,12 @@
 
     <h3>讓文化成為日常的一部分</h3>
     <p>最終，我們期待石滬不只是被「保存」，而是重新融入現代生活之中。透過持續行動與世代接力，讓這份來自海岸的智慧，在未來仍能被看見、被使用、也被珍惜。</p>
-    
+
     <img src="images/長者回到海邊，將記憶與地方經驗慢慢說給下一代聽。.jfif" alt="永續傳承活動照片" class="content-img">
   </main>
 
-  <footer>
-    © 2026 讓石滬再現 計畫團隊
+  <footer style="text-align: center; padding: 20px; color: #666; font-size: 0.8rem;">
+    蝦兵蟹將新豐海洋研究團隊
   </footer>
 
   <script>
@@ -225,4 +326,5 @@
     });
   </script>
 </body>
+
 </html>
