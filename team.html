@@ -1,54 +1,64 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
+
 <head>
   <meta charset="utf-8">
   <link rel="icon" href="images/logo.jfif" type="image/png">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-  <title>隊員介紹 - 讓石滬再現</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>隊員介紹 - 讓石滬再現，讓長者再笑</title>
   <style>
-    :root { 
-      --brand: #9a382b; 
-      --bg: #f6f2ea; 
-      --line: #e8dfd3; 
+    :root {
+      --brand: #9a382b;
+      --bg: #f6f2ea;
+      --line: #e8dfd3;
       --nav-bg: rgba(255, 255, 255, 0.95);
     }
-    
+
     /* --- 核心背景設置 --- */
-    body { 
-      font-family: "PingFang TC", "Microsoft JhengHei", sans-serif; 
-      margin: 0; 
-      line-height: 1.8; 
-      background-color: var(--bg); 
-      background-image: url('images/teambackground.jpg'); 
+    body {
+      font-family: "PingFang TC", "Microsoft JhengHei", sans-serif;
+      margin: 0;
+      line-height: 1.8;
+      background-color: var(--bg);
+      background-image: url('images/teambackground.jpg');
       background-repeat: no-repeat;
-      background-size: cover; 
-      background-position: center center; 
-      background-attachment: fixed; 
+      background-size: cover;
+      background-position: center center;
+      background-attachment: fixed;
       color: #333;
     }
-    
+
     /* --- 導覽列 --- */
-    .topbar { 
-      position: sticky; 
-      top: 0; 
-      background: var(--nav-bg); 
-      backdrop-filter: blur(15px); 
+    .topbar {
+      position: sticky;
+      top: 0;
+      background: var(--nav-bg);
+      backdrop-filter: blur(15px);
       -webkit-backdrop-filter: blur(15px);
-      border-bottom: 1px solid var(--line); 
-      z-index: 1000; 
-      padding: 10px 20px; 
+      border-bottom: 1px solid var(--line);
+      z-index: 1000;
+      padding: 10px 20px;
     }
 
-    .nav { 
-      display: flex; 
-      align-items: center; 
-      justify-content: space-between; 
-      max-width: 1200px; 
-      margin: auto; 
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: auto;
     }
 
-    .nav-logo-placeholder { display: flex; align-items: center; gap: 8px; }
-    .nav-logo-placeholder img { height: 40px; width: auto; transition: 0.3s; }
+    .nav-logo-placeholder {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .nav-logo-placeholder img {
+      height: 40px;
+      width: auto;
+      transition: 0.3s;
+    }
 
     /* 漢堡按鈕 */
     .menu-toggle {
@@ -58,69 +68,116 @@
       align-items: center;
       width: 38px;
       height: 38px;
-      background: var(--brand); 
+      background: var(--brand);
       border-radius: 6px;
       cursor: pointer;
       gap: 4px;
     }
-    .menu-toggle span { display: block; width: 20px; height: 2px; background: white; transition: 0.3s; }
 
-    .nav-links { display: flex; gap: 8px; }
-    .nav-btn { 
-      padding: 8px 12px; 
-      background: rgba(255, 255, 255, 0.5); 
-      border: 1px solid var(--line); 
-      border-radius: 4px; 
-      text-decoration: none; 
-      color: #4b5563; 
-      font-weight: bold; 
-      font-size: 13px; 
-      transition: 0.3s; 
+    .menu-toggle span {
+      display: block;
+      width: 20px;
+      height: 2px;
+      background: white;
+      transition: 0.3s;
     }
-    .nav-btn:hover, .nav-btn.active { background: var(--brand); color: white; border-color: var(--brand); }
+
+    .nav-links {
+      display: flex;
+      gap: 8px;
+    }
+
+    .nav-btn {
+      padding: 8px 12px;
+      background: rgba(255, 255, 255, 0.5);
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      text-decoration: none;
+      color: #4b5563;
+      font-weight: bold;
+      font-size: 13px;
+      transition: 0.3s;
+    }
+
+    .nav-btn:hover,
+    .nav-btn.active {
+      background: var(--brand);
+      color: white;
+      border-color: var(--brand);
+    }
 
     /* --- 彈出動畫 --- */
     @keyframes slideDown {
-      from { opacity: 0; transform: translate(-50%, -15px); }
-      to { opacity: 1; transform: translate(-50%, 0); }
+      from {
+        opacity: 0;
+        transform: translate(-50%, -15px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translate(-50%, 0);
+      }
     }
 
     /* --- 主要容器 --- */
-    .container { max-width: 1100px; margin: 40px auto; padding: 0 20px; }
-    .back-home { display: inline-block; margin-bottom: 20px; padding: 10px 20px; background: var(--brand); color: white; text-decoration: none; border-radius: 6px; font-weight: bold; transition: 0.3s; }
-    .back-home:hover { background: #7a2c22; transform: translateX(-5px); }
+    .container {
+      max-width: 1100px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    .back-home {
+      display: inline-block;
+      margin-bottom: 20px;
+      padding: 10px 20px;
+      background: var(--brand);
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .back-home:hover {
+      background: #7a2c22;
+      transform: translateX(-5px);
+    }
 
     .team-intro-box {
       background: rgba(255, 255, 255, 0.85);
       padding: 10px;
       border-radius: 20px;
       border: 1px solid var(--line);
-      box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
       margin-bottom: 40px;
       text-align: center;
       backdrop-filter: blur(5px);
     }
-    .team-intro-box h1 { color: var(--brand); margin: 10px 0; }
+
+    .team-intro-box h1 {
+      color: var(--brand);
+      margin: 10px 0;
+    }
 
     /* --- 團隊照片與遮罩 --- */
-    .team-photo-wrapper { 
-      position: relative; 
+    .team-photo-wrapper {
+      position: relative;
       width: 180px;
       height: 180px;
       margin: 0 auto 20px auto;
       border-radius: 50%;
-      overflow: hidden; 
+      overflow: hidden;
       border: 5px solid white;
-      box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
       cursor: pointer;
       /* 確保手機點擊不會有藍色框 */
       -webkit-tap-highlight-color: transparent;
     }
-    
-    .team-photo { 
+
+    .team-photo {
       width: 100%;
       height: 100%;
-      object-fit: cover; 
+      object-fit: cover;
       display: block;
       transition: 0.5s ease;
     }
@@ -131,7 +188,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(154, 56, 43, 0.92); 
+      background: rgba(154, 56, 43, 0.92);
       color: white;
       display: flex;
       justify-content: center;
@@ -141,47 +198,78 @@
       font-size: 0.9rem;
       line-height: 1.5;
       text-align: center;
-      opacity: 0; 
+      opacity: 0;
       transition: 0.5s ease;
       border-radius: 50%;
     }
 
     /* 滑鼠懸停與點擊啟動 (透過 JS 控制 .active) */
     .team-photo-wrapper:hover .intro-overlay,
-    .team-photo-wrapper.active .intro-overlay { opacity: 1; }
+    .team-photo-wrapper.active .intro-overlay {
+      opacity: 1;
+    }
+
     .team-photo-wrapper:hover .team-photo,
-    .team-photo-wrapper.active .team-photo { transform: scale(1.1); }
+    .team-photo-wrapper.active .team-photo {
+      transform: scale(1.1);
+    }
 
     /* --- 網格佈局 --- */
-    .grid { 
-      display: grid; 
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); 
-      gap: 30px; 
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 30px;
     }
-    
-    .card { 
-      background: rgba(255, 255, 255, 0.9); 
-      padding: 30px 20px; 
-      border-radius: 20px; 
-      border: 1px solid var(--line); 
-      text-align: center; 
-      transition: 0.3s ease; 
+
+    .card {
+      background: rgba(255, 255, 255, 0.9);
+      padding: 30px 20px;
+      border-radius: 20px;
+      border: 1px solid var(--line);
+      text-align: center;
+      transition: 0.3s ease;
       backdrop-filter: blur(5px);
     }
-    .card:hover { transform: translateY(-8px); box-shadow: 0 12px 25px rgba(154,56,43,0.1); }
-    .card h3 { color: var(--brand); margin: 0 0 8px 0; font-size: 1.3rem; }
-    .card p { margin: 0; color: #555; font-size: 0.95rem; }
-    .card strong { color: var(--brand); display: block; margin-bottom: 5px; }
+
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 25px rgba(154, 56, 43, 0.1);
+    }
+
+    .card h3 {
+      color: var(--brand);
+      margin: 0 0 8px 0;
+      font-size: 1.3rem;
+    }
+
+    .card p {
+      margin: 0;
+      color: #555;
+      font-size: 0.95rem;
+    }
+
+    .card strong {
+      color: var(--brand);
+      display: block;
+      margin-bottom: 5px;
+    }
 
     /* --- 手機版媒體查詢 --- */
     @media (max-width: 768px) {
-      .topbar { padding: 8px 15px; }
-      .nav-logo-placeholder img { height: 28px; }
+      .topbar {
+        padding: 8px 15px;
+      }
 
-      .menu-toggle { display: flex; }
+      .nav-logo-placeholder img {
+        height: 28px;
+      }
+
+      .menu-toggle {
+        display: flex;
+      }
 
       .nav-links {
-        display: none; 
+        display: none;
         flex-direction: column;
         position: absolute;
         top: 55px;
@@ -191,12 +279,14 @@
         width: 90%;
         padding: 15px 0;
         border-radius: 12px;
-        box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
         z-index: 1050;
         animation: slideDown 0.4s ease-out forwards;
       }
 
-      .nav-links.active { display: flex; }
+      .nav-links.active {
+        display: flex;
+      }
 
       .nav-btn {
         width: 85%;
@@ -207,24 +297,59 @@
         padding: 12px 0;
       }
 
-      .container { margin: 20px auto; padding: 0 15px; }
-      .team-intro-box { margin-bottom: 25px; border-radius: 15px; }
-      .team-intro-box h1 { font-size: 1.5rem; }
+      .container {
+        margin: 20px auto;
+        padding: 0 15px;
+      }
 
-      .grid { gap: 20px; grid-template-columns: 1fr 1fr; } /* 手機版改為兩排，節省空間 */
-      .card { padding: 20px 10px; }
-      .team-photo-wrapper { width: 120px; height: 120px; border-width: 3px; }
-      .intro-overlay { font-size: 0.75rem; padding: 10px; }
-      .card h3 { font-size: 1.1rem; }
-      .card p { font-size: 0.8rem; }
+      .team-intro-box {
+        margin-bottom: 25px;
+        border-radius: 15px;
+      }
+
+      .team-intro-box h1 {
+        font-size: 1.5rem;
+      }
+
+      .grid {
+        gap: 20px;
+        grid-template-columns: 1fr 1fr;
+      }
+
+      /* 手機版改為兩排，節省空間 */
+      .card {
+        padding: 20px 10px;
+      }
+
+      .team-photo-wrapper {
+        width: 120px;
+        height: 120px;
+        border-width: 3px;
+      }
+
+      .intro-overlay {
+        font-size: 0.75rem;
+        padding: 10px;
+      }
+
+      .card h3 {
+        font-size: 1.1rem;
+      }
+
+      .card p {
+        font-size: 0.8rem;
+      }
     }
 
     /* 超小螢幕改回一排 */
     @media (max-width: 480px) {
-      .grid { grid-template-columns: 1fr; }
+      .grid {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
+
 <body>
   <header class="topbar">
     <nav class="nav">
@@ -251,7 +376,7 @@
 
   <main class="container">
     <a href="index.html" class="back-home">← 返回主頁</a>
-  
+
     <div class="team-intro-box">
       <h1>核心團隊成員</h1>
     </div>
@@ -259,8 +384,8 @@
     <div class="grid">
       <div class="card">
         <div class="team-photo-wrapper" onclick="toggleOverlay(this)">
-            <img src="images/郭栩廷.jfif" alt="郭栩廷" class="team-photo">
-            <div class="intro-overlay">負責整體計畫的策劃，希望能讓石滬文化被更多人看見。</div>
+          <img src="images/郭栩廷.jfif" alt="郭栩廷" class="team-photo">
+          <div class="intro-overlay">負責整體計畫的策劃，希望能讓石滬文化被更多人看見。</div>
         </div>
         <h3>郭栩廷</h3>
         <p><strong>團隊隊長</strong>計畫統籌與議題思考</p>
@@ -268,8 +393,8 @@
 
       <div class="card">
         <div class="team-photo-wrapper" onclick="toggleOverlay(this)">
-            <img src="images/江宥均.jfif" alt="江宥均" class="team-photo">
-            <div class="intro-overlay">熱愛藝術與美學，負責將石滬的文化底蘊轉化為視覺藝術。</div>
+          <img src="images/江宥均.jfif" alt="江宥均" class="team-photo">
+          <div class="intro-overlay">熱愛藝術與美學，負責將石滬的文化底蘊轉化為視覺藝術。</div>
         </div>
         <h3>江宥均</h3>
         <p><strong>團隊成員</strong>書畫藝術與文化美感</p>
@@ -277,8 +402,8 @@
 
       <div class="card">
         <div class="team-photo-wrapper" onclick="toggleOverlay(this)">
-            <img src="images/林筱喬.jfif" alt="林筱喬" class="team-photo">
-            <div class="intro-overlay">專注於社會議題，致力於推動青年參與地方創生。</div>
+          <img src="images/林筱喬.jfif" alt="林筱喬" class="team-photo">
+          <div class="intro-overlay">專注於社會議題，致力於推動青年參與地方創生。</div>
         </div>
         <h3>林筱喬</h3>
         <p><strong>團隊成員</strong>社會議題與行動參與</p>
@@ -286,8 +411,8 @@
 
       <div class="card">
         <div class="team-photo-wrapper" onclick="toggleOverlay(this)">
-            <img src="images/廖鴻瑜.jfif" alt="廖鴻瑜" class="team-photo">
-            <div class="intro-overlay">深耕地方行動，連結社區與團隊，建立穩固的合作關係。</div>
+          <img src="images/廖鴻瑜.jfif" alt="廖鴻瑜" class="team-photo">
+          <div class="intro-overlay">深耕地方行動，連結社區與團隊，建立穩固的合作關係。</div>
         </div>
         <h3>廖鴻瑜</h3>
         <p><strong>團隊成員</strong>地方行動與公共關懷</p>
@@ -295,8 +420,8 @@
 
       <div class="card">
         <div class="team-photo-wrapper" onclick="toggleOverlay(this)">
-            <img src="images/簡美琪2.jfif" alt="簡美琪" class="team-photo">
-            <div class="intro-overlay">負責活動主持，用語言傳遞石滬的故事與感動。</div>
+          <img src="images/簡美琪2.jfif" alt="簡美琪" class="team-photo">
+          <div class="intro-overlay">負責活動主持，用語言傳遞石滬的故事與感動。</div>
         </div>
         <h3>簡美琪</h3>
         <p><strong>團隊成員</strong>活動表達／主持協作</p>
@@ -304,8 +429,8 @@
 
       <div class="card">
         <div class="team-photo-wrapper" onclick="toggleOverlay(this)">
-            <img src="images/吳艾芸2.jfif" alt="吳艾芸" class="team-photo">
-            <div class="intro-overlay">擅長捕捉瞬間，負責用鏡頭記錄修護石滬的點點滴滴。</div>
+          <img src="images/吳艾芸2.jfif" alt="吳艾芸" class="team-photo">
+          <div class="intro-overlay">擅長捕捉瞬間，負責用鏡頭記錄修護石滬的點點滴滴。</div>
         </div>
         <h3>吳艾芸</h3>
         <p><strong>團隊成員</strong>影像紀錄／影片剪輯</p>
@@ -313,8 +438,8 @@
 
       <div class="card">
         <div class="team-photo-wrapper" onclick="toggleOverlay(this)">
-            <img src="images/邱婗恩2.jfif" alt="邱婗恩" class="team-photo">
-            <div class="intro-overlay">喜愛動手實作，負責攤位規劃與充滿溫度的手作體驗。</div>
+          <img src="images/邱婗恩2.jfif" alt="邱婗恩" class="team-photo">
+          <div class="intro-overlay">喜愛動手實作，負責攤位規劃與充滿溫度的手作體驗。</div>
         </div>
         <h3>邱婗恩</h3>
         <p><strong>團隊成員</strong>手作實作／攤位互動</p>
@@ -322,15 +447,17 @@
 
       <div class="card">
         <div class="team-photo-wrapper" onclick="toggleOverlay(this)">
-            <img src="images/趙致衡.jfif" alt="趙致衡" class="team-photo">
-            <div class="intro-overlay">線上經營行銷，網路公關。</div>
+          <img src="images/趙致衡.jfif" alt="趙致衡" class="team-photo">
+          <div class="intro-overlay">線上經營行銷，網路公關。</div>
         </div>
         <h3>趙致衡</h3>
         <p><strong>團隊成員</strong>前端應用／網站架設</p>
       </div>
     </div>
   </main>
-
+  <footer style="text-align: center; padding: 20px; color: #666; font-size: 0.8rem;">
+    蝦兵蟹將新豐海洋研究團隊
+  </footer>
   <script>
     // 漢堡選單邏輯
     const menuToggle = document.getElementById('mobile-menu');
@@ -358,4 +485,5 @@
     });
   </script>
 </body>
+
 </html>
