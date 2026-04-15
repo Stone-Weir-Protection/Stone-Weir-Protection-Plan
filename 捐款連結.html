@@ -1,55 +1,65 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
+
 <head>
   <meta charset="utf-8">
   <link rel="icon" href="images/logo.jfif" type="image/png">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-  <title>支持計畫 - 讓石滬再現</title>
-  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>支持計畫 - 讓石滬再現，讓長者再笑</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
 
   <style>
-    :root { 
-      --brand: #9a382b; 
-      --line: #e8dfd3; 
+    :root {
+      --brand: #9a382b;
+      --line: #e8dfd3;
       --nav-bg: rgba(255, 255, 255, 0.95);
     }
 
-    body { 
-      font-family: "PingFang TC", "Microsoft JhengHei", sans-serif; 
-      margin: 0; 
-      background-image: url('images/捐款連結背景.jpg'); 
+    body {
+      font-family: "PingFang TC", "Microsoft JhengHei", sans-serif;
+      margin: 0;
+      background-image: url('images/捐款連結背景.jpg');
       background-size: cover;
       background-attachment: fixed;
       background-position: center;
       min-height: 100vh;
       color: #333;
     }
-    
+
     /* --- 導覽列 --- */
-    .topbar { 
-      position: sticky; 
-      top: 0; 
-      background: var(--nav-bg); 
-      backdrop-filter: blur(15px); 
+    .topbar {
+      position: sticky;
+      top: 0;
+      background: var(--nav-bg);
+      backdrop-filter: blur(15px);
       -webkit-backdrop-filter: blur(15px);
-      border-bottom: 1px solid var(--line); 
-      z-index: 1000; 
-      padding: 10px 20px; 
+      border-bottom: 1px solid var(--line);
+      z-index: 1000;
+      padding: 10px 20px;
     }
 
-    .nav { 
-      display: flex; 
-      align-items: center; 
-      justify-content: space-between; 
-      max-width: 1200px; 
-      margin: auto; 
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: auto;
     }
 
-    .nav-logo-placeholder { display: flex; align-items: center; gap: 8px; }
-    .nav-logo-placeholder img { height: 40px; width: auto; transition: 0.3s; }
+    .nav-logo-placeholder {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .nav-logo-placeholder img {
+      height: 40px;
+      width: auto;
+      transition: 0.3s;
+    }
 
     /* 漢堡按鈕 */
     .menu-toggle {
@@ -59,54 +69,78 @@
       align-items: center;
       width: 38px;
       height: 38px;
-      background: var(--brand); 
+      background: var(--brand);
       border-radius: 6px;
       cursor: pointer;
       gap: 4px;
     }
-    .menu-toggle span { display: block; width: 20px; height: 2px; background: white; transition: 0.3s; }
 
-    .nav-links { display: flex; gap: 8px; }
-    .nav-btn { 
-      padding: 8px 12px; 
-      background: rgba(255, 255, 255, 0.5); 
-      border: 1px solid var(--line); 
-      border-radius: 4px; 
-      text-decoration: none; 
-      color: #4b5563; 
-      font-weight: bold; 
-      font-size: 13px; 
-      transition: 0.3s; 
+    .menu-toggle span {
+      display: block;
+      width: 20px;
+      height: 2px;
+      background: white;
+      transition: 0.3s;
     }
-    .nav-btn:hover, .nav-btn.active { background: var(--brand); color: white; border-color: var(--brand); }
+
+    .nav-links {
+      display: flex;
+      gap: 8px;
+    }
+
+    .nav-btn {
+      padding: 8px 12px;
+      background: rgba(255, 255, 255, 0.5);
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      text-decoration: none;
+      color: #4b5563;
+      font-weight: bold;
+      font-size: 13px;
+      transition: 0.3s;
+    }
+
+    .nav-btn:hover,
+    .nav-btn.active {
+      background: var(--brand);
+      color: white;
+      border-color: var(--brand);
+    }
 
     /* --- 彈出動畫 --- */
     @keyframes slideDown {
-      from { opacity: 0; transform: translate(-50%, -15px); }
-      to { opacity: 1; transform: translate(-50%, 0); }
+      from {
+        opacity: 0;
+        transform: translate(-50%, -15px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translate(-50%, 0);
+      }
     }
 
     /* --- 內容容器 --- */
-    .container { 
-      max-width: 800px; 
-      margin: 40px auto; 
-      background: rgba(255, 255, 255, 0.4); 
-      backdrop-filter: blur(15px); 
+    .container {
+      max-width: 800px;
+      margin: 40px auto;
+      background: rgba(255, 255, 255, 0.4);
+      backdrop-filter: blur(15px);
       -webkit-backdrop-filter: blur(15px);
-      padding: 50px 40px; 
-      border-radius: 30px; 
-      text-align: center; 
-      box-shadow: 0 20px 50px rgba(0,0,0,0.25); 
+      padding: 50px 40px;
+      border-radius: 30px;
+      text-align: center;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
       border: 1px solid rgba(255, 255, 255, 0.4);
     }
 
-    h1 { 
-      font-family: 'Ma Shan Zheng', cursive; 
-      font-size: 3.5rem; 
-      color: var(--brand); 
-      margin-top: 0; 
-      margin-bottom: 30px; 
-      text-shadow: 2px 2px 0px rgba(255,255,255,0.5);
+    h1 {
+      font-family: 'Ma Shan Zheng', cursive;
+      font-size: 3.5rem;
+      color: var(--brand);
+      margin-top: 0;
+      margin-bottom: 30px;
+      text-shadow: 2px 2px 0px rgba(255, 255, 255, 0.5);
     }
 
     .promo-box {
@@ -115,7 +149,7 @@
       border-radius: 20px;
       overflow: hidden;
       border: 8px solid white;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
       margin-bottom: 40px;
     }
 
@@ -126,7 +160,9 @@
       transition: 0.6s cubic-bezier(0.25, 1, 0.5, 1);
     }
 
-    .promo-box:hover img { transform: scale(1.05); }
+    .promo-box:hover img {
+      transform: scale(1.05);
+    }
 
     /* --- 立即捐款大按鈕 --- */
     .donate-action-btn {
@@ -157,22 +193,36 @@
       font-size: 1rem;
       color: #d61f1f;
       font-weight: bold;
-      background: rgba(255,255,255,0.6);
+      background: rgba(255, 255, 255, 0.6);
       display: inline-block;
       padding: 5px 15px;
       border-radius: 5px;
     }
 
-    footer { text-align: center; padding: 40px; color: #fff; font-size: 0.95rem; text-shadow: 0 2px 6px rgba(0,0,0,0.6); }
+    footer {
+      text-align: center;
+      padding: 40px;
+      color: #fff;
+      font-size: 0.95rem;
+      text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+    }
 
     /* --- 手機版媒體查詢 --- */
     @media (max-width: 768px) {
-      .topbar { padding: 8px 15px; }
-      .nav-logo-placeholder img { height: 28px; }
-      .menu-toggle { display: flex; }
+      .topbar {
+        padding: 8px 15px;
+      }
+
+      .nav-logo-placeholder img {
+        height: 28px;
+      }
+
+      .menu-toggle {
+        display: flex;
+      }
 
       .nav-links {
-        display: none; 
+        display: none;
         flex-direction: column;
         position: absolute;
         top: 55px;
@@ -182,24 +232,47 @@
         width: 90%;
         padding: 15px 0;
         border-radius: 12px;
-        box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
         z-index: 1050;
         animation: slideDown 0.4s ease-out forwards;
       }
-      .nav-links.active { display: flex; }
-      .nav-btn { width: 85%; margin: 4px auto; text-align: center; background: #f9f9f9; border: none; padding: 12px 0; }
 
-      .container { 
-        margin: 20px 15px; 
-        padding: 40px 20px; 
-        border-radius: 20px; 
+      .nav-links.active {
+        display: flex;
       }
-      h1 { font-size: 2.2rem; margin-bottom: 20px; }
-      .donate-action-btn { font-size: 1.3rem; padding: 18px; }
-      .footer-note { font-size: 0.85rem; }
+
+      .nav-btn {
+        width: 85%;
+        margin: 4px auto;
+        text-align: center;
+        background: #f9f9f9;
+        border: none;
+        padding: 12px 0;
+      }
+
+      .container {
+        margin: 20px 15px;
+        padding: 40px 20px;
+        border-radius: 20px;
+      }
+
+      h1 {
+        font-size: 2.2rem;
+        margin-bottom: 20px;
+      }
+
+      .donate-action-btn {
+        font-size: 1.3rem;
+        padding: 18px;
+      }
+
+      .footer-note {
+        font-size: 0.85rem;
+      }
     }
   </style>
 </head>
+
 <body>
 
   <header class="topbar">
@@ -227,7 +300,7 @@
 
   <main class="container">
     <h1>聚沙成塔，守護石滬</h1>
-    
+
     <div class="promo-box">
       <img src="images/付款圖.png" alt="捐款支持說明圖">
     </div>
@@ -243,7 +316,9 @@
     </div>
   </main>
 
-  <footer>© 2026 讓石滬再現 計畫團隊</footer>
+  <footer style="text-align: center; padding: 20px; color: #666; font-size: 0.8rem;">
+    蝦兵蟹將新豐海洋研究團隊
+  </footer>
 
   <script>
     // 漢堡選單邏輯
@@ -269,4 +344,5 @@
     });
   </script>
 </body>
+
 </html>
