@@ -1,381 +1,404 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh-Hant">
-
-<head>
-  <meta charset="utf-8">
-  <link rel="icon" href="images/logo.jfif" type="image/png">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>讓石滬再現，讓長者再笑 | 首頁</title>
-  <style>
-    :root {
-      --bg-light: #f6f2ea;
-      --brand: #9a382b;
-      --nav-bg: rgba(255, 255, 255, 0.95);
-    }
-
-    body {
-      margin: 0;
-      font-family: "Microsoft JhengHei", sans-serif;
-      color: #333;
-      line-height: 1.8;
-      background-image: url('images/index背景.jpg');
-      background-size: cover;
-      background-position: center;
-      background-attachment: fixed;
-      background-repeat: no-repeat;
-      background-color: var(--bg-light);
-    }
-
-    /* --- 導覽列 --- */
-    .topbar {
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      background: var(--nav-bg);
-      backdrop-filter: blur(15px);
-      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-      padding: 10px 20px;
-    }
-
-    .nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      max-width: 1200px;
-      margin: auto;
-    }
-
-    .nav-logo-box {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .nav-logo-img {
-      height: 30px;
-      width: auto;
-      transition: 0.3s;
-    }
-
-    /* 漢堡按鈕 */
-    .menu-toggle {
-      display: none;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      width: 38px;
-      height: 38px;
-      background: var(--brand);
-      border-radius: 6px;
-      cursor: pointer;
-      gap: 4px;
-    }
-
-    .menu-toggle span {
-      display: block;
-      width: 20px;
-      height: 2px;
-      background: white;
-      transition: 0.3s;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 8px;
-    }
-
-    .nav-btn {
-      padding: 8px 16px;
-      background: rgba(255, 255, 255, 0.4);
-      border: 1px solid rgba(0, 0, 0, 0.1);
-      border-radius: 6px;
-      text-decoration: none;
-      color: #4b5563;
-      font-weight: bold;
-      font-size: 14px;
-      transition: 0.3s;
-    }
-
-    .nav-btn:hover,
-    .nav-btn.active {
-      background: var(--brand);
-      color: white;
-    }
-
-    /* --- 手機版彈出動畫定義 --- */
-    @keyframes slideDown {
-      from {
-        opacity: 0;
-        transform: translate(-50%, -20px);
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="images/logo.jfif" type="image/png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>讓石滬再現，讓長者再笑 | 首頁</title>
+    <style>
+      :root {
+        --bg-light: #f6f2ea;
+        --brand: #9a382b;
+        --nav-bg: rgba(255, 255, 255, 0.95);
       }
 
-      to {
-        opacity: 1;
-        transform: translate(-50%, 0);
+      body {
+        margin: 0;
+        font-family: "Microsoft JhengHei", sans-serif;
+        color: #333;
+        line-height: 1.8;
+        background-image: url("images/index背景.jpg");
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+        background-color: var(--bg-light);
       }
-    }
 
-    /* --- 英雄區塊 --- */
-    .hero {
-      background: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(8px);
-      padding: 60px 20px;
-      text-align: center;
-      margin: 40px auto;
-      max-width: 1100px;
-      border-radius: 40px;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .hero-title-img {
-      width: 100%;
-      max-width: 600px;
-      height: auto;
-      margin-bottom: 30px;
-    }
-
-    .hero-description-box {
-      background: rgba(255, 255, 255, 0.6);
-      max-width: 750px;
-      padding: 20px;
-      border-radius: 15px;
-      margin-bottom: 30px;
-    }
-
-    /* 輪播圖 */
-    .carousel-container {
-      position: relative;
-      width: 100%;
-      max-width: 850px;
-      height: 450px;
-      overflow: hidden;
-      border-radius: 25px;
-      border: 10px solid white;
-      background: white;
-    }
-
-    .carousel-track {
-      display: flex;
-      width: 100%;
-      height: 100%;
-      transition: transform 0.8s ease-in-out;
-    }
-
-    .carousel-slide {
-      min-width: 100%;
-      background-size: cover;
-      background-position: center;
-      display: flex;
-      align-items: flex-end;
-      justify-content: center;
-    }
-
-    .slide-label {
-      background: rgba(0, 0, 0, 0.6);
-      color: white;
-      padding: 8px 20px;
-      margin-bottom: 20px;
-      border-radius: 50px;
-      font-size: 0.9rem;
-    }
-
-    .carousel-btn {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: rgba(255, 255, 255, 0.8);
-      border: none;
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      cursor: pointer;
-      z-index: 10;
-    }
-
-    .carousel-logo {
-      position: absolute;
-      left: 20px;
-      bottom: 20px;
-      height: 50px;
-      z-index: 11;
-    }
-
-    .btn-main {
-      display: inline-block;
-      padding: 16px 45px;
-      background: var(--brand);
-      color: white;
-      text-decoration: none;
-      border-radius: 100px;
-      font-weight: bold;
-      margin-top: 30px;
-    }
-
-    /* --- 手機版媒體查詢 --- */
-    @media (max-width: 768px) {
+      /* --- 導覽列 --- */
       .topbar {
-        padding: 8px 15px;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        background: var(--nav-bg);
+        backdrop-filter: blur(15px);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        padding: 10px 20px;
+      }
+
+      .nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        max-width: 1200px;
+        margin: auto;
+      }
+
+      .nav-logo-box {
+        display: flex;
+        align-items: center;
+        gap: 8px;
       }
 
       .nav-logo-img {
-        height: 24px !important;
-        /* 建議設為 24-28px 比較清晰 */
-        width: auto !important;
-        max-height: 30px;
+        height: 30px;
+        width: auto;
+        transition: 0.3s;
       }
 
+      /* 漢堡按鈕 */
       .menu-toggle {
-        display: flex;
+        display: none;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 38px;
+        height: 38px;
+        background: var(--brand);
+        border-radius: 6px;
+        cursor: pointer;
+        gap: 4px;
+      }
+
+      .menu-toggle span {
+        display: block;
+        width: 20px;
+        height: 2px;
+        background: white;
+        transition: 0.3s;
       }
 
       .nav-links {
-        display: none;
-        flex-direction: column;
-        position: absolute;
-        top: 55px;
-        left: 50%;
-        transform: translateX(-50%);
-        background: white;
-        width: 92%;
-        padding: 15px 0;
-        border-radius: 12px;
-        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-        z-index: 1050;
-        /* 動態效果 */
-        animation: slideDown 0.4s ease-out forwards;
-      }
-
-      .nav-links.active {
         display: flex;
+        gap: 8px;
       }
 
       .nav-btn {
-        width: 85%;
-        margin: 4px auto;
-        text-align: center;
-        padding: 12px 0;
-        background: #f9f9f9;
-        border: none;
+        padding: 8px 16px;
+        background: rgba(255, 255, 255, 0.4);
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        border-radius: 6px;
+        text-decoration: none;
+        color: #4b5563;
+        font-weight: bold;
+        font-size: 14px;
+        transition: 0.3s;
       }
 
+      .nav-btn:hover,
+      .nav-btn.active {
+        background: var(--brand);
+        color: white;
+      }
+
+      /* --- 手機版彈出動畫定義 --- */
+      @keyframes slideDown {
+        from {
+          opacity: 0;
+          transform: translate(-50%, -20px);
+        }
+
+        to {
+          opacity: 1;
+          transform: translate(-50%, 0);
+        }
+      }
+
+      /* --- 英雄區塊 --- */
       .hero {
-        padding: 30px 15px;
-        margin: 15px;
-        border-radius: 25px;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(8px);
+        padding: 60px 20px;
+        text-align: center;
+        margin: 40px auto;
+        max-width: 1100px;
+        border-radius: 40px;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
       }
 
       .hero-title-img {
-        max-width: 250px;
+        width: 100%;
+        max-width: 600px;
+        height: auto;
+        margin-bottom: 30px;
       }
 
-      .hero-description-box h2 {
-        font-size: 1rem;
-        line-height: 1.5;
+      .hero-description-box {
+        background: rgba(255, 255, 255, 0.6);
+        max-width: 750px;
+        padding: 20px;
+        border-radius: 15px;
+        margin-bottom: 30px;
       }
 
+      /* 輪播圖 */
       .carousel-container {
-        height: 220px;
-        border-width: 5px;
+        position: relative;
+        width: 100%;
+        max-width: 850px;
+        height: 450px;
+        overflow: hidden;
+        border-radius: 25px;
+        border: 10px solid white;
+        background: white;
+      }
+
+      .carousel-track {
+        display: flex;
+        width: 100%;
+        height: 100%;
+        transition: transform 0.8s ease-in-out;
+      }
+
+      .carousel-slide {
+        min-width: 100%;
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+      }
+
+      .slide-label {
+        background: rgba(0, 0, 0, 0.6);
+        color: white;
+        padding: 8px 20px;
+        margin-bottom: 20px;
+        border-radius: 50px;
+        font-size: 0.9rem;
+      }
+
+      .carousel-btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(255, 255, 255, 0.8);
+        border: none;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        cursor: pointer;
+        z-index: 10;
       }
 
       .carousel-logo {
-        height: 30px;
-        left: 10px;
-        bottom: 10px;
+        position: absolute;
+        left: 20px;
+        bottom: 20px;
+        height: 50px;
+        z-index: 11;
       }
 
       .btn-main {
-        padding: 14px 35px;
-        font-size: 0.95rem;
+        display: inline-block;
+        padding: 16px 45px;
+        background: var(--brand);
+        color: white;
+        text-decoration: none;
+        border-radius: 100px;
+        font-weight: bold;
+        margin-top: 30px;
       }
-    }
-  </style>
-</head>
 
-<body>
+      /* --- 手機版媒體查詢 --- */
+      @media (max-width: 768px) {
+        .topbar {
+          padding: 8px 15px;
+        }
 
-  <header class="topbar">
-    <nav class="nav">
-      <div class="nav-logo-box">
-        <a href="https://www.oldpeople.org.tw/pop/" target="_blank">
-          <img src="images/老盟logo.png" alt="Logo 1" class="nav-logo-img">
-        </a>
-        <a href="https://www.ctsh.hcc.edu.tw/" target="_blank">
-          <img src="images/ctsh.png" alt="Logo 2" class="nav-logo-img">
-        </a>
-      </div>
+        .nav-logo-img {
+          height: 24px !important;
+          /* 建議設為 24-28px 比較清晰 */
+          width: auto !important;
+          max-height: 30px;
+        }
 
-      <div class="menu-toggle" id="mobile-menu">
-        <span></span><span></span><span></span>
-      </div>
+        .menu-toggle {
+          display: flex;
+        }
 
-      <div class="nav-links" id="nav-list">
-        <a href="index.html" class="nav-btn active">首頁</a>
-        <a href="team.html" class="nav-btn">隊員</a>
-        <a href="idea.html" class="nav-btn">核心想法</a>
-        <a href="永續傳承.html" class="nav-btn">永續傳承</a>
-        <a href="商品.html" class="nav-btn">商品</a>
-        <a href="三代合照.html" class="nav-btn">三代合照</a>
-        <a href="money.html" class="nav-btn">資金應用</a>
-        <a href="捐款連結.html" class="nav-btn">捐款連結</a>
-      </div>
-    </nav>
-  </header>
+        .nav-links {
+          display: none;
+          flex-direction: column;
+          position: absolute;
+          top: 55px;
+          left: 50%;
+          transform: translateX(-50%);
+          background: white;
+          width: 92%;
+          padding: 15px 0;
+          border-radius: 12px;
+          box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+          z-index: 1050;
+          /* 動態效果 */
+          animation: slideDown 0.4s ease-out forwards;
+        }
 
-  <main>
-    <section class="hero">
-      <img src="images/標題.png" alt="標題" class="hero-title-img">
-      <div class="hero-description-box">
-        <h2>一群高中生，陪伴長者走回海邊，把正在消逝的文化重新帶回生活。</h2>
-      </div>
+        .nav-links.active {
+          display: flex;
+        }
 
-      <div class="carousel-container">
-        <button class="carousel-btn" style="left:10px" onclick="move(-1)">❮</button>
-        <button class="carousel-btn" style="right:10px" onclick="move(1)">❯</button>
-        <img src="images/logo.jfif" alt="Logo" class="carousel-logo">
-        <div class="carousel-track" id="track">
-          <div class="carousel-slide" style="background-image: url('images/合照.jfif');">
-            <div class="slide-label">團隊大合照</div>
-          </div>
-          <div class="carousel-slide" style="background-image: url('images/世代連結.jfif');">
-            <div class="slide-label">科學實驗傳承</div>
-          </div>
-          <div class="carousel-slide" style="background-image: url('images/頭條.jfif');">
-            <div class="slide-label">世代傳承活動</div>
-          </div>
-          <div class="carousel-slide" style="background-image: url('images/大合照.jpg');">
-            <div class="slide-label">獲獎合照</div>
+        .nav-btn {
+          width: 85%;
+          margin: 4px auto;
+          text-align: center;
+          padding: 12px 0;
+          background: #f9f9f9;
+          border: none;
+        }
+
+        .hero {
+          padding: 30px 15px;
+          margin: 15px;
+          border-radius: 25px;
+        }
+
+        .hero-title-img {
+          max-width: 250px;
+        }
+
+        .hero-description-box h2 {
+          font-size: 1rem;
+          line-height: 1.5;
+        }
+
+        .carousel-container {
+          height: 220px;
+          border-width: 5px;
+        }
+
+        .carousel-logo {
+          height: 30px;
+          left: 10px;
+          bottom: 10px;
+        }
+
+        .btn-main {
+          padding: 14px 35px;
+          font-size: 0.95rem;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <header class="topbar">
+      <nav class="nav">
+        <div class="nav-logo-box">
+          <a href="https://www.oldpeople.org.tw/pop/" target="_blank">
+            <img src="images/老盟logo.png" alt="Logo 1" class="nav-logo-img" />
+          </a>
+          <a href="https://www.ctsh.hcc.edu.tw/" target="_blank">
+            <img src="images/ctsh.png" alt="Logo 2" class="nav-logo-img" />
+          </a>
+        </div>
+
+        <div class="menu-toggle" id="mobile-menu">
+          <span></span><span></span><span></span>
+        </div>
+
+        <div class="nav-links" id="nav-list">
+          <a href="index.html" class="nav-btn active">首頁</a>
+          <a href="team.html" class="nav-btn">隊員</a>
+          <a href="專案故事.html" class="nav-btn">專案故事</a>
+          <a href="idea.html" class="nav-btn">核心想法</a>
+          <a href="永續傳承.html" class="nav-btn">永續傳承</a>
+          <a href="商品.html" class="nav-btn">商品</a>
+          <a href="三代合照.html" class="nav-btn">三代合照</a>
+          <a href="money.html" class="nav-btn">資金應用</a>
+          <a href="捐款連結.html" class="nav-btn">捐款連結</a>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <img src="images/標題.png" alt="標題" class="hero-title-img" />
+        <div class="hero-description-box">
+          <h2>一群高中生，陪伴長者走回海邊，把正在消逝的文化重新帶回生活。</h2>
+        </div>
+
+        <div class="carousel-container">
+          <button class="carousel-btn" style="left: 10px" onclick="move(-1)">
+            ❮
+          </button>
+          <button class="carousel-btn" style="right: 10px" onclick="move(1)">
+            ❯
+          </button>
+          <img src="images/logo.jfif" alt="Logo" class="carousel-logo" />
+          <div class="carousel-track" id="track">
+            <div
+              class="carousel-slide"
+              style="background-image: url(&quot;images/合照.jfif&quot;)"
+            >
+              <div class="slide-label">團隊大合照</div>
+            </div>
+            <div
+              class="carousel-slide"
+              style="background-image: url(&quot;images/世代連結.jfif&quot;)"
+            >
+              <div class="slide-label">科學實驗傳承</div>
+            </div>
+            <div
+              class="carousel-slide"
+              style="background-image: url(&quot;images/頭條.jfif&quot;)"
+            >
+              <div class="slide-label">世代傳承活動</div>
+            </div>
+            <div
+              class="carousel-slide"
+              style="background-image: url(&quot;images/大合照.jpg&quot;)"
+            >
+              <div class="slide-label">獲獎合照</div>
+            </div>
           </div>
         </div>
-      </div>
 
-      <a href="idea.html" class="btn-main">開啟行動故事 →</a>
-    </section>
-  </main>
-  <footer style="text-align: center; padding: 20px; color: #666; font-size: 0.8rem;">
-    蝦兵蟹將新豐海洋研究團隊
-  </footer>
-  <script>
-    const menuToggle = document.getElementById('mobile-menu');
-    const navLinks = document.getElementById('nav-list');
+        <a href="idea.html" class="btn-main">開啟行動故事 →</a>
+      </section>
+    </main>
+    <footer
+      style="text-align: center; padding: 20px; color: #666; font-size: 0.8rem"
+    >
+      蝦兵蟹將新豐海洋研究團隊
+    </footer>
+    <script>
+      const menuToggle = document.getElementById("mobile-menu");
+      const navLinks = document.getElementById("nav-list");
 
-    menuToggle.addEventListener('click', () => {
-      navLinks.classList.toggle('active');
-    });
+      menuToggle.addEventListener("click", () => {
+        navLinks.classList.toggle("active");
+      });
 
-    // 輪播邏輯
-    let current = 0;
-    const track = document.getElementById('track');
-    const slides = document.querySelectorAll('.carousel-slide');
-    const total = slides.length;
+      // 輪播邏輯
+      let current = 0;
+      const track = document.getElementById("track");
+      const slides = document.querySelectorAll(".carousel-slide");
+      const total = slides.length;
 
-    function update() { track.style.transform = `translateX(-${current * 100}%)`; }
-    function move(step) { current = (current + step + total) % total; update(); }
-    setInterval(() => { move(1); }, 4000);
-  </script>
-</body>
-
+      function update() {
+        track.style.transform = `translateX(-${current * 100}%)`;
+      }
+      function move(step) {
+        current = (current + step + total) % total;
+        update();
+      }
+      setInterval(() => {
+        move(1);
+      }, 4000);
+    </script>
+  </body>
 </html>
