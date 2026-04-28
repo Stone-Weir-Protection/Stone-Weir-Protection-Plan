@@ -1,351 +1,363 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh-Hant">
-
-<head>
-  <meta charset="utf-8">
-  <link rel="icon" href="images/logo.jfif" type="image/png">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>資金應用 - 讓石滬再現，讓長者再笑</title>
-  <style>
-    :root {
-      --brand: #9a382b;
-      --bg-start: #e9a315;
-      --bg-end: #1bade6;
-      --line: #e8dfd3;
-      --nav-bg: rgba(255, 255, 255, 0.95);
-    }
-
-    body {
-      font-family: "PingFang TC", "Microsoft JhengHei", sans-serif;
-      margin: 0;
-      line-height: 1.8;
-      background: linear-gradient(135deg, var(--bg-start) 0%, var(--bg-end) 100%);
-      background-attachment: fixed;
-      min-height: 100vh;
-      color: #333;
-    }
-
-    /* --- 導覽列 --- */
-    .topbar {
-      position: sticky;
-      top: 0;
-      background: var(--nav-bg);
-      backdrop-filter: blur(15px);
-      -webkit-backdrop-filter: blur(15px);
-      border-bottom: 1px solid var(--line);
-      z-index: 1000;
-      padding: 10px 20px;
-    }
-
-    .nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      max-width: 1200px;
-      margin: auto;
-    }
-
-    .nav-logo-placeholder {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .nav-logo-placeholder img {
-      height: 40px;
-      width: auto;
-      transition: 0.3s;
-    }
-
-    /* 漢堡按鈕 */
-    .menu-toggle {
-      display: none;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      width: 38px;
-      height: 38px;
-      background: var(--brand);
-      border-radius: 6px;
-      cursor: pointer;
-      gap: 4px;
-    }
-
-    .menu-toggle span {
-      display: block;
-      width: 20px;
-      height: 2px;
-      background: white;
-      transition: 0.3s;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 8px;
-    }
-
-    .nav-btn {
-      padding: 8px 12px;
-      background: rgba(255, 255, 255, 0.5);
-      border: 1px solid var(--line);
-      border-radius: 4px;
-      text-decoration: none;
-      color: #4b5563;
-      font-weight: bold;
-      font-size: 13px;
-      transition: 0.3s;
-    }
-
-    .nav-btn:hover,
-    .nav-btn.active {
-      background: var(--brand);
-      color: white;
-      border-color: var(--brand);
-    }
-
-    /* --- 彈出動畫 --- */
-    @keyframes slideDown {
-      from {
-        opacity: 0;
-        transform: translate(-50%, -15px);
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="images/logo.jfif" type="image/png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>資金應用 - 讓石滬再現，讓長者再笑</title>
+    <style>
+      :root {
+        --brand: #9a382b;
+        --bg-start: #e9a315;
+        --bg-end: #1bade6;
+        --line: #e8dfd3;
+        --nav-bg: rgba(255, 255, 255, 0.95);
       }
 
-      to {
-        opacity: 1;
-        transform: translate(-50%, 0);
+      body {
+        font-family: "PingFang TC", "Microsoft JhengHei", sans-serif;
+        margin: 0;
+        line-height: 1.8;
+        background: linear-gradient(
+          135deg,
+          var(--bg-start) 0%,
+          var(--bg-end) 100%
+        );
+        background-attachment: fixed;
+        min-height: 100vh;
+        color: #333;
       }
-    }
 
-    /* --- 內容容器 --- */
-    .container {
-      max-width: 850px;
-      margin: 40px auto;
-      background: rgba(255, 255, 255, 0.8);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      padding: 50px;
-      border-radius: 30px;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
-    }
-
-    .back-home {
-      display: inline-block;
-      margin-bottom: 25px;
-      padding: 10px 20px;
-      background: var(--brand);
-      color: white;
-      text-decoration: none;
-      border-radius: 6px;
-      font-weight: bold;
-      transition: 0.3s;
-    }
-
-    .back-home:hover {
-      background: #7a2c22;
-      transform: translateX(-5px);
-    }
-
-    h1 {
-      color: var(--brand);
-      margin-top: 0;
-      font-size: 2.2rem;
-    }
-
-    /* 資金項目卡片 */
-    .item {
-      background: rgba(255, 255, 255, 0.6);
-      border-radius: 15px;
-      padding: 25px;
-      margin-bottom: 25px;
-      border-left: 6px solid var(--brand);
-      transition: 0.3s;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-    }
-
-    .item:hover {
-      background: rgba(255, 255, 255, 0.9);
-      transform: translateY(-3px);
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-    }
-
-    .item h3 {
-      margin-top: 0;
-      color: #222;
-      font-size: 1.3rem;
-      margin-bottom: 12px;
-    }
-
-    .item p {
-      margin-bottom: 0;
-      color: #444;
-      font-size: 1.05rem;
-    }
-
-    .content-img {
-      width: 100%;
-      height: auto;
-      display: block;
-      margin: 40px 0;
-      border-radius: 20px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-    }
-
-    footer {
-      text-align: center;
-      padding: 30px;
-      color: #fff;
-      font-size: 0.9rem;
-      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-    }
-
-    /* --- 手機版媒體查詢 --- */
-    @media (max-width: 768px) {
+      /* --- 導覽列 --- */
       .topbar {
-        padding: 8px 15px;
+        position: sticky;
+        top: 0;
+        background: var(--nav-bg);
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+        border-bottom: 1px solid var(--line);
+        z-index: 1000;
+        padding: 10px 20px;
+      }
+
+      .nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        max-width: 1200px;
+        margin: auto;
+      }
+
+      .nav-logo-placeholder {
+        display: flex;
+        align-items: center;
+        gap: 8px;
       }
 
       .nav-logo-placeholder img {
-        height: 28px;
+        height: 40px;
+        width: auto;
+        transition: 0.3s;
       }
 
-      /* Logo 縮小至 28px */
-
+      /* 漢堡按鈕 */
       .menu-toggle {
-        display: flex;
+        display: none;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 38px;
+        height: 38px;
+        background: var(--brand);
+        border-radius: 6px;
+        cursor: pointer;
+        gap: 4px;
+      }
+
+      .menu-toggle span {
+        display: block;
+        width: 20px;
+        height: 2px;
+        background: white;
+        transition: 0.3s;
       }
 
       .nav-links {
-        display: none;
-        flex-direction: column;
-        position: absolute;
-        top: 55px;
-        left: 50%;
-        transform: translateX(-50%);
-        background: white;
-        width: 90%;
-        padding: 15px 0;
-        border-radius: 12px;
-        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-        z-index: 1050;
-        animation: slideDown 0.4s ease-out forwards;
-      }
-
-      .nav-links.active {
         display: flex;
+        gap: 8px;
       }
 
       .nav-btn {
-        width: 85%;
-        margin: 4px auto;
-        text-align: center;
-        background: #f9f9f9;
-        border: none;
-        padding: 12px 0;
-        font-size: 14px;
+        padding: 8px 12px;
+        background: rgba(255, 255, 255, 0.5);
+        border: 1px solid var(--line);
+        border-radius: 4px;
+        text-decoration: none;
+        color: #4b5563;
+        font-weight: bold;
+        font-size: 13px;
+        transition: 0.3s;
       }
 
+      .nav-btn:hover,
+      .nav-btn.active {
+        background: var(--brand);
+        color: white;
+        border-color: var(--brand);
+      }
+
+      /* --- 彈出動畫 --- */
+      @keyframes slideDown {
+        from {
+          opacity: 0;
+          transform: translate(-50%, -15px);
+        }
+
+        to {
+          opacity: 1;
+          transform: translate(-50%, 0);
+        }
+      }
+
+      /* --- 內容容器 --- */
       .container {
-        margin: 20px 15px;
-        padding: 30px 20px;
-        border-radius: 20px;
-      }
-
-      h1 {
-        font-size: 1.8rem;
-        text-align: center;
+        max-width: 850px;
+        margin: 40px auto;
+        background: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        padding: 50px;
+        border-radius: 30px;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
       }
 
       .back-home {
-        display: block;
-        text-align: center;
-        margin: 0 auto 20px auto;
-        width: fit-content;
+        display: inline-block;
+        margin-bottom: 25px;
+        padding: 10px 20px;
+        background: var(--brand);
+        color: white;
+        text-decoration: none;
+        border-radius: 6px;
+        font-weight: bold;
+        transition: 0.3s;
       }
 
+      .back-home:hover {
+        background: #7a2c22;
+        transform: translateX(-5px);
+      }
+
+      h1 {
+        color: var(--brand);
+        margin-top: 0;
+        font-size: 2.2rem;
+      }
+
+      /* 資金項目卡片 */
       .item {
-        padding: 20px;
-        border-left-width: 4px;
+        background: rgba(255, 255, 255, 0.6);
+        border-radius: 15px;
+        padding: 25px;
+        margin-bottom: 25px;
+        border-left: 6px solid var(--brand);
+        transition: 0.3s;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+      }
+
+      .item:hover {
+        background: rgba(255, 255, 255, 0.9);
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
       }
 
       .item h3 {
-        font-size: 1.15rem;
+        margin-top: 0;
+        color: #222;
+        font-size: 1.3rem;
+        margin-bottom: 12px;
       }
 
       .item p {
-        font-size: 0.95rem;
+        margin-bottom: 0;
+        color: #444;
+        font-size: 1.05rem;
       }
-    }
-  </style>
-</head>
 
-<body>
-  <header class="topbar">
-    <nav class="nav">
-      <div class="nav-logo-placeholder">
-        <img src="images/logo.jfif" alt="Logo">
+      .content-img {
+        width: 100%;
+        height: auto;
+        display: block;
+        margin: 40px 0;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      }
+
+      footer {
+        text-align: center;
+        padding: 30px;
+        color: #fff;
+        font-size: 0.9rem;
+        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+      }
+
+      /* --- 手機版媒體查詢 --- */
+      @media (max-width: 768px) {
+        .topbar {
+          padding: 8px 15px;
+        }
+
+        .nav-logo-placeholder img {
+          height: 28px;
+        }
+
+        /* Logo 縮小至 28px */
+
+        .menu-toggle {
+          display: flex;
+        }
+
+        .nav-links {
+          display: none;
+          flex-direction: column;
+          position: absolute;
+          top: 55px;
+          left: 50%;
+          transform: translateX(-50%);
+          background: white;
+          width: 90%;
+          padding: 15px 0;
+          border-radius: 12px;
+          box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+          z-index: 1050;
+          animation: slideDown 0.4s ease-out forwards;
+        }
+
+        .nav-links.active {
+          display: flex;
+        }
+
+        .nav-btn {
+          width: 85%;
+          margin: 4px auto;
+          text-align: center;
+          background: #f9f9f9;
+          border: none;
+          padding: 12px 0;
+          font-size: 14px;
+        }
+
+        .container {
+          margin: 20px 15px;
+          padding: 30px 20px;
+          border-radius: 20px;
+        }
+
+        h1 {
+          font-size: 1.8rem;
+          text-align: center;
+        }
+
+        .back-home {
+          display: block;
+          text-align: center;
+          margin: 0 auto 20px auto;
+          width: fit-content;
+        }
+
+        .item {
+          padding: 20px;
+          border-left-width: 4px;
+        }
+
+        .item h3 {
+          font-size: 1.15rem;
+        }
+
+        .item p {
+          font-size: 0.95rem;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <header class="topbar">
+      <nav class="nav">
+        <div class="nav-logo-placeholder">
+          <img src="images/logo.jfif" alt="Logo" />
+        </div>
+
+        <div class="menu-toggle" id="mobile-menu">
+          <span></span><span></span><span></span>
+        </div>
+
+        <div class="nav-links" id="nav-list">
+          <a href="index.html" class="nav-btn">首頁</a>
+          <a href="team.html" class="nav-btn">隊員</a>
+          <a href="專案故事.html" class="nav-btn">專案故事</a>
+          <a href="idea.html" class="nav-btn">核心想法</a>
+          <a href="永續傳承.html" class="nav-btn">永續傳承</a>
+          <a href="商品.html" class="nav-btn">商品</a>
+          <a href="三代合照.html" class="nav-btn">三代合照</a>
+          <a href="money.html" class="nav-btn active">資金應用</a>
+          <a href="捐款連結.html" class="nav-btn">捐款連結</a>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container">
+      <a href="index.html" class="back-home">← 返回主頁</a>
+
+      <h1>資金運用規劃</h1>
+      <p style="text-align: center; color: #666; margin-bottom: 30px">
+        所有募得資金將會由中華民國老人福利推動聯盟運用在三節長者關懷活動或長者圓夢計畫
+      </p>
+
+      <div class="item">
+        <h3>端午餐敘與成果分享</h3>
+        <p>
+          結合傳統節慶舉辦成果分享會，用美食與聚會將長者、青年與社區居民凝聚在一起，讓石滬故事在餐桌上延續，見證行動的成果。
+        </p>
       </div>
 
-      <div class="menu-toggle" id="mobile-menu">
-        <span></span><span></span><span></span>
+      <div class="item">
+        <h3>長者參與支持系統</h3>
+        <p>
+          提供必要的交通接送與專業保險，並安排青年陪伴協助。我們致力於降低長者走出家門的門檻，讓長輩能安心、安全地回到海岸分享智慧。
+        </p>
       </div>
 
-      <div class="nav-links" id="nav-list">
-        <a href="index.html" class="nav-btn">首頁</a>
-        <a href="team.html" class="nav-btn">隊員</a>
-        <a href="idea.html" class="nav-btn">核心想法</a>
-        <a href="永續傳承.html" class="nav-btn">永續傳承</a>
-        <a href="商品.html" class="nav-btn">商品</a>
-        <a href="三代合照.html" class="nav-btn">三代合照</a>
-        <a href="money.html" class="nav-btn active">資金應用</a>
-        <a href="捐款連結.html" class="nav-btn">捐款連結</a>
+      <div class="item">
+        <h3>文化修復與數位紀錄</h3>
+        <p>
+          購置必要的修復工具與材料，並投入經費於影像製作與文字保存。透過數位化的方式，將修築技法與地方記憶轉化為可長久流傳的教材。
+        </p>
       </div>
-    </nav>
-  </header>
 
-  <main class="container">
-    <a href="index.html" class="back-home">← 返回主頁</a>
+      <img src="images/資金運用圖.jpg" alt="計畫成果照片" class="content-img" />
+    </main>
 
-    <h1>資金運用規劃</h1>
-    <p style="text-align: center; color: #666; margin-bottom: 30px;">為了確保計畫能發揮最大效益，我們將經費投入在文化保存的最核心需求上。</p>
+    <footer
+      style="text-align: center; padding: 20px; color: #666; font-size: 0.8rem"
+    >
+      蝦兵蟹將新豐海洋研究團隊
+    </footer>
 
-    <div class="item">
-      <h3>端午餐敘與成果分享</h3>
-      <p>結合傳統節慶舉辦成果分享會，用美食與聚會將長者、青年與社區居民凝聚在一起，讓石滬故事在餐桌上延續，見證行動的成果。</p>
-    </div>
+    <script>
+      const menuToggle = document.getElementById("mobile-menu");
+      const navLinks = document.getElementById("nav-list");
 
-    <div class="item">
-      <h3>長者參與支持系統</h3>
-      <p>提供必要的交通接送與專業保險，並安排青年陪伴協助。我們致力於降低長者走出家門的門檻，讓長輩能安心、安全地回到海岸分享智慧。</p>
-    </div>
-
-    <div class="item">
-      <h3>文化修復與數位紀錄</h3>
-      <p>購置必要的修復工具與材料，並投入經費於影像製作與文字保存。透過數位化的方式，將修築技法與地方記憶轉化為可長久流傳的教材。</p>
-    </div>
-
-    <img src="images/資金運用圖.jpg" alt="計畫成果照片" class="content-img">
-
-  </main>
-
-  <footer style="text-align: center; padding: 20px; color: #666; font-size: 0.8rem;">
-    蝦兵蟹將新豐海洋研究團隊
-  </footer>
-
-  <script>
-    const menuToggle = document.getElementById('mobile-menu');
-    const navLinks = document.getElementById('nav-list');
-
-    menuToggle.addEventListener('click', () => {
-      navLinks.classList.toggle('active');
-    });
-
-    // 點擊連結後關閉選單
-    document.querySelectorAll('.nav-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        navLinks.classList.remove('active');
+      menuToggle.addEventListener("click", () => {
+        navLinks.classList.toggle("active");
       });
-    });
-  </script>
-</body>
 
+      // 點擊連結後關閉選單
+      document.querySelectorAll(".nav-btn").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          navLinks.classList.remove("active");
+        });
+      });
+    </script>
+  </body>
 </html>
