@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="images/logo.jfif" type="image/png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>專案故事 - 讓石滬再現，讓長者再笑</title>
+    <style>
+      :root {
+        --brand: #9a382b;
+        --bg: #f6f2ea;
+        --line: #e8dfd3;
+        --nav-bg: rgba(255, 255, 255, 0.95);
+      }
+
+      body {
+        font-family: "PingFang TC", "Microsoft JhengHei", sans-serif;
+        background-image: url("images/index背景.jpg");
+        background-size: cover;
+        background-attachment: fixed;
+        background-position: center;
+        margin: 0;
+        line-height: 1.8;
+        color: #333;
+      }
+
+      /* --- 導覽列 --- */
+      .topbar {
+        position: sticky;
+        top: 0;
+        background: var(--nav-bg);
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+        border-bottom: 1px solid var(--line);
+        z-index: 1000;
+        padding: 10px 20px;
+      }
+
+      .nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        max-width: 1200px;
+        margin: auto;
+      }
+
+      .nav-logo-placeholder {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .nav-logo-placeholder img {
+        height: 40px;
+        width: auto;
+        transition: 0.3s;
+      }
+
+      /* 漢堡按鈕 */
+      .menu-toggle {
+        display: none;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 38px;
+        height: 38px;
+        background: var(--brand);
+        border-radius: 6px;
+        cursor: pointer;
+        gap: 4px;
+      }
+
+      .menu-toggle span {
+        display: block;
+        width: 20px;
+        height: 2px;
+        background: white;
+        transition: 0.3s;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 8px;
+      }
+
+      .nav-btn {
+        padding: 8px 12px;
+        background: rgba(255, 255, 255, 0.5);
+        border: 1px solid var(--line);
+        border-radius: 4px;
+        text-decoration: none;
+        color: #4b5563;
+        font-weight: bold;
+        font-size: 13px;
+        transition: 0.3s;
+      }
+
+      .nav-btn:hover,
+      .nav-btn.active {
+        background: var(--brand);
+        color: white;
+        border-color: var(--brand);
+      }
+
+      @keyframes slideDown {
+        from {
+          opacity: 0;
+          transform: translate(-50%, -15px);
+        }
+        to {
+          opacity: 1;
+          transform: translate(-50%, 0);
+        }
+      }
+
+      /* --- 主要內容區 --- */
+      .container {
+        max-width: 850px;
+        margin: 40px auto;
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(12px);
+        padding: 40px;
+        border-radius: 30px;
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+      }
+
+      .back-home {
+        display: inline-block;
+        margin-bottom: 25px;
+        padding: 10px 20px;
+        background: var(--brand);
+        color: white;
+        text-decoration: none;
+        border-radius: 6px;
+        font-weight: bold;
+      }
+
+      h1 {
+        color: var(--brand);
+        text-align: center;
+        font-size: 2rem;
+        margin-bottom: 30px;
+      }
+      h2 {
+        color: var(--brand);
+        margin-top: 35px;
+        border-left: 5px solid var(--brand);
+        padding-left: 15px;
+      }
+      .quote {
+        font-size: 1.3rem;
+        font-style: italic;
+        color: #555;
+        text-align: center;
+        margin: 30px 0;
+        padding: 20px;
+        border-top: 1px solid #ddd;
+        border-bottom: 1px solid #ddd;
+      }
+      .highlight {
+        background: #fffaf0;
+        padding: 20px;
+        border-radius: 10px;
+        border-left: 5px solid var(--brand);
+        margin: 20px 0;
+      }
+
+      footer {
+        text-align: center;
+        padding: 20px;
+        color: #fff;
+        font-size: 0.8rem;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+      }
+
+      @media (max-width: 768px) {
+        .menu-toggle {
+          display: flex;
+        }
+        .nav-links {
+          display: none;
+          flex-direction: column;
+          position: absolute;
+          top: 55px;
+          left: 50%;
+          transform: translateX(-50%);
+          background: white;
+          width: 90%;
+          padding: 15px 0;
+          border-radius: 12px;
+          box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+          z-index: 1050;
+        }
+        .nav-links.active {
+          display: flex;
+        }
+        .nav-btn {
+          width: 85%;
+          margin: 4px auto;
+          text-align: center;
+          border: none;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <header class="topbar">
+      <nav class="nav">
+        <div class="nav-logo-placeholder">
+          <img src="images/logo.jfif" alt="Logo" />
+        </div>
+        <div class="menu-toggle" id="mobile-menu">
+          <span></span><span></span><span></span>
+        </div>
+        <div class="nav-links" id="nav-list">
+          <a href="index.html" class="nav-btn">首頁</a>
+          <a href="team.html" class="nav-btn">隊員</a>
+          <a href="專案故事.html" class="nav-btn active">專案故事</a>
+          <a href="idea.html" class="nav-btn">核心想法</a>
+          <a href="永續傳承.html" class="nav-btn">永續傳承</a>
+          <a href="商品.html" class="nav-btn">商品</a>
+          <a href="三代合照.html" class="nav-btn">三代合照</a>
+          <a href="money.html" class="nav-btn">資金應用</a>
+          <a href="捐款連結.html" class="nav-btn">捐款連結</a>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container">
+      <a href="index.html" class="back-home">← 返回主頁</a>
+      <h1>專案故事</h1>
+
+      <div class="quote">
+        「有些長輩，不是不想走出來，而是太久沒有人等他們一起走了。」
+      </div>
+
+      <p>
+        我們在陪伴長者參與海岸活動時，慢慢發現，最讓人心疼的，往往不是石滬的老去，而是那些站在石滬旁邊的人，也正在一點一點被社會遺忘。
+      </p>
+      <p>
+        他們年輕時，為家庭忙、為生活忙、為別人忙。他們撐起過一個家，照顧過孩子，也走過最辛苦的日子。可當年紀漸漸大了，腳步慢了，能去的地方變少了，能說話的人也變少了。很多長輩不是沒有故事，而是很久沒有人願意坐下來，好好聽他說一句話。
+      </p>
+
+      <div class="highlight">
+        <p>
+          <strong
+            >最讓人難過的，從來不是老，而是在變老的過程裡，慢慢失去被看見的機會。</strong
+          >
+        </p>
+      </div>
+
+      <h2>我們真正想做的：不是辦一場活動，而是把長輩重新帶回人群裡</h2>
+      <p>
+        石滬，只是我們看見問題的起點。真正讓我們放不下的，是那些原本應該被尊敬、被傾聽、被好好對待的長者，卻在時間裡慢慢退到角落。
+      </p>
+      <p>
+        所以，我們想做的，不只是帶長者參加一次活動，不只是安排一次見面，而是想多做一點，讓他們重新走出家門，重新與人互動，重新感受到自己不是被社會遺落的人。
+      </p>
+
+      <h2>長者需要的：不只是照顧，還有被需要的感覺</h2>
+      <p>
+        很多時候，我們以為長者需要的是物資、餐食、交通、照顧。這些都很重要，但比這些更深一層的，是他們也需要一種感受——我還有人記得、我說的話還有人願意聽、我走出去不是多餘的。那些平凡的陪伴，對長輩來說，常常不是小事。
+      </p>
+
+      <h2>老盟在做的：就是把這份陪伴，真正送到長者身邊</h2>
+      <p>
+        中華民國老人福利推動聯盟長期關注獨居長者與高齡關懷，透過三節送暖、關懷服務與各類陪伴行動，持續為長者創造與社會重新連結的機會。這次的募款，不只是支持一場活動，而是支持更多長者有機會走出家門、走進人群。
+      </p>
+
+      <h2>你支持的：不是一筆錢，而是一位長輩重新抬起頭的那一刻</h2>
+      <p>
+        每一份支持，都是在告訴一位長輩：你沒有被忘記。每一筆捐款，都是在替一位長輩爭取一個重新走進人群的機會。不是因為他可憐，而是因為他值得。因為他用一生走到今天，值得在這個時候，被社會溫柔接住。
+      </p>
+    </main>
+
+    <footer>蝦兵蟹將新豐海洋研究團隊</footer>
+
+    <script>
+      const menuToggle = document.getElementById("mobile-menu");
+      const navLinks = document.getElementById("nav-list");
+      menuToggle.addEventListener("click", () => {
+        navLinks.classList.toggle("active");
+      });
+      document.querySelectorAll(".nav-btn").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          navLinks.classList.remove("active");
+        });
+      });
+    </script>
+  </body>
+</html>
