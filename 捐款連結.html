@@ -1,356 +1,346 @@
 <!doctype html>
 <html lang="zh-Hant">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="images/logo.jfif" type="image/png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>支持計畫 - 讓石滬再現，讓長者再笑</title>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&display=swap"
-      rel="stylesheet"
-    />
+<head>
+  <meta charset="utf-8" />
+  <link rel="icon" href="images/logo.jfif" type="image/png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>支持計畫 - 讓石滬再現，讓長者再笑</title>
 
-    <style>
-      :root {
-        --brand: #9a382b;
-        --line: #e8dfd3;
-        --nav-bg: rgba(255, 255, 255, 0.95);
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --brand: #9a382b;
+      --line: #e8dfd3;
+      --nav-bg: rgba(255, 255, 255, 0.95);
+    }
+
+    body {
+      font-family: "PingFang TC", "Microsoft JhengHei", sans-serif;
+      margin: 0;
+      background-image: url("images/捐款連結背景.jpg");
+      background-size: cover;
+      background-attachment: fixed;
+      background-position: center;
+      min-height: 100vh;
+      color: #333;
+    }
+
+    /* --- 導覽列 --- */
+    .topbar {
+      position: sticky;
+      top: 0;
+      background: var(--nav-bg);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      border-bottom: 1px solid var(--line);
+      z-index: 1000;
+      padding: 10px 20px;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .nav-logo-placeholder {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .nav-logo-placeholder img {
+      height: 40px;
+      width: auto;
+      transition: 0.3s;
+    }
+
+    /* 漢堡按鈕 */
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 38px;
+      height: 38px;
+      background: var(--brand);
+      border-radius: 6px;
+      cursor: pointer;
+      gap: 4px;
+    }
+
+    .menu-toggle span {
+      display: block;
+      width: 20px;
+      height: 2px;
+      background: white;
+      transition: 0.3s;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 8px;
+    }
+
+    .nav-btn {
+      padding: 8px 12px;
+      background: rgba(255, 255, 255, 0.5);
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      text-decoration: none;
+      color: #4b5563;
+      font-weight: bold;
+      font-size: 13px;
+      transition: 0.3s;
+    }
+
+    .nav-btn:hover,
+    .nav-btn.active {
+      background: var(--brand);
+      color: white;
+      border-color: var(--brand);
+    }
+
+    /* --- 彈出動畫 --- */
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translate(-50%, -15px);
       }
 
-      body {
-        font-family: "PingFang TC", "Microsoft JhengHei", sans-serif;
-        margin: 0;
-        background-image: url("images/捐款連結背景.jpg");
-        background-size: cover;
-        background-attachment: fixed;
-        background-position: center;
-        min-height: 100vh;
-        color: #333;
+      to {
+        opacity: 1;
+        transform: translate(-50%, 0);
       }
+    }
 
-      /* --- 導覽列 --- */
+    /* --- 內容容器 --- */
+    .container {
+      max-width: 800px;
+      margin: 40px auto;
+      background: rgba(255, 255, 255, 0.4);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      padding: 50px 40px;
+      border-radius: 30px;
+      text-align: center;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+    }
+
+    h1 {
+      font-family: "Ma Shan Zheng", cursive;
+      font-size: 3.5rem;
+      color: var(--brand);
+      margin-top: 0;
+      margin-bottom: 30px;
+      text-shadow: 2px 2px 0px rgba(255, 255, 255, 0.5);
+    }
+
+    .promo-box {
+      width: 100%;
+      background: #fff;
+      border-radius: 20px;
+      overflow: hidden;
+      border: 8px solid white;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+      margin-bottom: 40px;
+    }
+
+    .promo-box img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    .promo-box:hover img {
+      transform: scale(1.05);
+    }
+
+    /* --- 立即捐款大按鈕 --- */
+    .donate-action-btn {
+      display: inline-block;
+      width: 100%;
+      max-width: 400px;
+      padding: 22px;
+      background: var(--brand);
+      color: white !important;
+      text-decoration: none;
+      font-size: 1.6rem;
+      font-weight: bold;
+      border-radius: 100px;
+      box-shadow: 0 10px 25px rgba(154, 56, 43, 0.4);
+      transition: 0.4s;
+      border: none;
+      cursor: pointer;
+    }
+
+    .donate-action-btn:hover {
+      background: #7a2c22;
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(154, 56, 43, 0.5);
+    }
+
+    .footer-note {
+      margin-top: 30px;
+      font-size: 1rem;
+      color: #d61f1f;
+      font-weight: bold;
+      background: rgba(255, 255, 255, 0.6);
+      display: inline-block;
+      padding: 5px 15px;
+      border-radius: 5px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px;
+      color: #fff;
+      font-size: 0.95rem;
+      text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+    }
+
+    /* --- 手機版媒體查詢 --- */
+    @media (max-width: 768px) {
       .topbar {
-        position: sticky;
-        top: 0;
-        background: var(--nav-bg);
-        backdrop-filter: blur(15px);
-        -webkit-backdrop-filter: blur(15px);
-        border-bottom: 1px solid var(--line);
-        z-index: 1000;
-        padding: 10px 20px;
-      }
-
-      .nav {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        max-width: 1200px;
-        margin: auto;
-      }
-
-      .nav-logo-placeholder {
-        display: flex;
-        align-items: center;
-        gap: 8px;
+        padding: 8px 15px;
       }
 
       .nav-logo-placeholder img {
-        height: 40px;
-        width: auto;
-        transition: 0.3s;
+        height: 28px;
       }
 
-      /* 漢堡按鈕 */
       .menu-toggle {
-        display: none;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        width: 38px;
-        height: 38px;
-        background: var(--brand);
-        border-radius: 6px;
-        cursor: pointer;
-        gap: 4px;
-      }
-
-      .menu-toggle span {
-        display: block;
-        width: 20px;
-        height: 2px;
-        background: white;
-        transition: 0.3s;
+        display: flex;
       }
 
       .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 55px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: white;
+        width: 90%;
+        padding: 15px 0;
+        border-radius: 12px;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        z-index: 1050;
+        animation: slideDown 0.4s ease-out forwards;
+      }
+
+      .nav-links.active {
         display: flex;
-        gap: 8px;
       }
 
       .nav-btn {
-        padding: 8px 12px;
-        background: rgba(255, 255, 255, 0.5);
-        border: 1px solid var(--line);
-        border-radius: 4px;
-        text-decoration: none;
-        color: #4b5563;
-        font-weight: bold;
-        font-size: 13px;
-        transition: 0.3s;
-      }
-
-      .nav-btn:hover,
-      .nav-btn.active {
-        background: var(--brand);
-        color: white;
-        border-color: var(--brand);
-      }
-
-      /* --- 彈出動畫 --- */
-      @keyframes slideDown {
-        from {
-          opacity: 0;
-          transform: translate(-50%, -15px);
-        }
-
-        to {
-          opacity: 1;
-          transform: translate(-50%, 0);
-        }
-      }
-
-      /* --- 內容容器 --- */
-      .container {
-        max-width: 800px;
-        margin: 40px auto;
-        background: rgba(255, 255, 255, 0.4);
-        backdrop-filter: blur(15px);
-        -webkit-backdrop-filter: blur(15px);
-        padding: 50px 40px;
-        border-radius: 30px;
+        width: 85%;
+        margin: 4px auto;
         text-align: center;
-        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
-        border: 1px solid rgba(255, 255, 255, 0.4);
+        background: #f9f9f9;
+        border: none;
+        padding: 12px 0;
+      }
+
+      .container {
+        margin: 20px 15px;
+        padding: 40px 20px;
+        border-radius: 20px;
       }
 
       h1 {
-        font-family: "Ma Shan Zheng", cursive;
-        font-size: 3.5rem;
-        color: var(--brand);
-        margin-top: 0;
-        margin-bottom: 30px;
-        text-shadow: 2px 2px 0px rgba(255, 255, 255, 0.5);
+        font-size: 2.2rem;
+        margin-bottom: 20px;
       }
 
-      .promo-box {
-        width: 100%;
-        background: #fff;
-        border-radius: 20px;
-        overflow: hidden;
-        border: 8px solid white;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-        margin-bottom: 40px;
-      }
-
-      .promo-box img {
-        width: 100%;
-        height: auto;
-        display: block;
-        transition: 0.6s cubic-bezier(0.25, 1, 0.5, 1);
-      }
-
-      .promo-box:hover img {
-        transform: scale(1.05);
-      }
-
-      /* --- 立即捐款大按鈕 --- */
       .donate-action-btn {
-        display: inline-block;
-        width: 100%;
-        max-width: 400px;
-        padding: 22px;
-        background: var(--brand);
-        color: white !important;
-        text-decoration: none;
-        font-size: 1.6rem;
-        font-weight: bold;
-        border-radius: 100px;
-        box-shadow: 0 10px 25px rgba(154, 56, 43, 0.4);
-        transition: 0.4s;
-        border: none;
-        cursor: pointer;
-      }
-
-      .donate-action-btn:hover {
-        background: #7a2c22;
-        transform: translateY(-5px);
-        box-shadow: 0 15px 35px rgba(154, 56, 43, 0.5);
+        font-size: 1.3rem;
+        padding: 18px;
       }
 
       .footer-note {
-        margin-top: 30px;
-        font-size: 1rem;
-        color: #d61f1f;
-        font-weight: bold;
-        background: rgba(255, 255, 255, 0.6);
-        display: inline-block;
-        padding: 5px 15px;
-        border-radius: 5px;
+        font-size: 0.85rem;
       }
+    }
+  </style>
+</head>
 
-      footer {
-        text-align: center;
-        padding: 40px;
-        color: #fff;
-        font-size: 0.95rem;
-        text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
-      }
-
-      /* --- 手機版媒體查詢 --- */
-      @media (max-width: 768px) {
-        .topbar {
-          padding: 8px 15px;
-        }
-
-        .nav-logo-placeholder img {
-          height: 28px;
-        }
-
-        .menu-toggle {
-          display: flex;
-        }
-
-        .nav-links {
-          display: none;
-          flex-direction: column;
-          position: absolute;
-          top: 55px;
-          left: 50%;
-          transform: translateX(-50%);
-          background: white;
-          width: 90%;
-          padding: 15px 0;
-          border-radius: 12px;
-          box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-          z-index: 1050;
-          animation: slideDown 0.4s ease-out forwards;
-        }
-
-        .nav-links.active {
-          display: flex;
-        }
-
-        .nav-btn {
-          width: 85%;
-          margin: 4px auto;
-          text-align: center;
-          background: #f9f9f9;
-          border: none;
-          padding: 12px 0;
-        }
-
-        .container {
-          margin: 20px 15px;
-          padding: 40px 20px;
-          border-radius: 20px;
-        }
-
-        h1 {
-          font-size: 2.2rem;
-          margin-bottom: 20px;
-        }
-
-        .donate-action-btn {
-          font-size: 1.3rem;
-          padding: 18px;
-        }
-
-        .footer-note {
-          font-size: 0.85rem;
-        }
-      }
-    </style>
-  </head>
-
-  <body>
-    <header class="topbar">
-      <nav class="nav">
-        <div class="nav-logo-placeholder">
-          <img src="images/logo.jfif" alt="Logo" />
-        </div>
-
-        <div class="menu-toggle" id="mobile-menu">
-          <span></span><span></span><span></span>
-        </div>
-
-        <div class="nav-links" id="nav-list">
-          <a href="index.html" class="nav-btn">首頁</a>
-          <a href="team.html" class="nav-btn">隊員</a>
-          <a href="專案故事.html" class="nav-btn">專案故事</a>
-          <a href="附加效益.html" class="nav-btn">附加效益</a>
-          <a href="永續傳承.html" class="nav-btn">永續傳承</a>
-          <a href="商品.html" class="nav-btn">商品</a>
-          <a href="三代合照.html" class="nav-btn">三代合照</a>
-          <a href="money.html" class="nav-btn">資金應用</a>
-          <a href="捐款連結.html" class="nav-btn active">捐款連結</a>
-        </div>
-      </nav>
-    </header>
-
-    <main class="container">
-      <h1>聚沙成塔，守護石滬</h1>
-
-      <div class="promo-box">
-        <img
-          src="images/從海岸現場到交流分享，讓不同年齡的人都能走進同一段地方記憶。.jfif"
-          alt="捐款條碼"
-        />
+<body>
+  <header class="topbar">
+    <nav class="nav">
+      <div class="nav-logo-placeholder">
+        <img src="images/logo.jfif" alt="Logo" />
       </div>
 
-      <a
-        href="https://www.oldpeople.org.tw/pop/feature/donation"
-        target="_blank"
-        class="donate-action-btn"
-      >
-        支持計畫，立即行動 →
-      </a>
-
-      <div>
-        <h3 class="footer-note">※ 點擊按鈕將開啟新頁面跳轉至捐款平台。</h3>
+      <div class="menu-toggle" id="mobile-menu">
+        <span></span><span></span><span></span>
       </div>
-    </main>
 
-    <footer
-      style="text-align: center; padding: 20px; color: #666; font-size: 0.8rem"
-    >
-      蝦兵蟹將新豐海洋研究團隊
-    </footer>
+      <div class="nav-links" id="nav-list">
+        <a href="index.html" class="nav-btn">首頁</a>
+        <a href="team.html" class="nav-btn">隊員</a>
+        <a href="專案故事.html" class="nav-btn">專案故事</a>
+        <a href="附加效益.html" class="nav-btn">附加效益</a>
+        <a href="永續傳承.html" class="nav-btn">永續傳承</a>
+        <a href="商品.html" class="nav-btn">商品</a>
+        <a href="三代合照.html" class="nav-btn">三代合照</a>
+        <a href="money.html" class="nav-btn">資金應用</a>
+        <a href="捐款連結.html" class="nav-btn active">捐款連結</a>
+      </div>
+    </nav>
+  </header>
 
-    <script>
-      // 漢堡選單邏輯
-      const menuToggle = document.getElementById("mobile-menu");
-      const navLinks = document.getElementById("nav-list");
+  <main class="container">
+    <h1>聚沙成塔，守護石滬</h1>
 
-      menuToggle.addEventListener("click", () => {
-        navLinks.classList.toggle("active");
+    <div class="promo-box">
+      <img src="images/從海岸現場到交流分享，讓不同年齡的人都能走進同一段地方記憶。.jfif" alt="捐款條碼" />
+    </div>
+
+    <a href="https://www.oldpeople.org.tw/pop/feature/donation/content/18" target="_blank" class="donate-action-btn">
+      支持計畫，立即行動 →
+    </a>
+
+    <div>
+      <h3 class="footer-note">※ 點擊按鈕將開啟新頁面跳轉至捐款平台。</h3>
+    </div>
+  </main>
+
+  <footer style="text-align: center; padding: 20px; color: #666; font-size: 0.8rem">
+    蝦兵蟹將新豐海洋研究團隊
+  </footer>
+
+  <script>
+    // 漢堡選單邏輯
+    const menuToggle = document.getElementById("mobile-menu");
+    const navLinks = document.getElementById("nav-list");
+
+    menuToggle.addEventListener("click", () => {
+      navLinks.classList.toggle("active");
+    });
+
+    // 點擊連結後自動關閉選單
+    document.querySelectorAll(".nav-btn").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        navLinks.classList.remove("active");
       });
+    });
 
-      // 點擊連結後自動關閉選單
-      document.querySelectorAll(".nav-btn").forEach((btn) => {
-        btn.addEventListener("click", () => {
-          navLinks.classList.remove("active");
-        });
-      });
+    // 點擊空白處關閉選單
+    document.addEventListener("click", (e) => {
+      if (!menuToggle.contains(e.target) && !navLinks.contains(e.target)) {
+        navLinks.classList.remove("active");
+      }
+    });
+  </script>
+</body>
 
-      // 點擊空白處關閉選單
-      document.addEventListener("click", (e) => {
-        if (!menuToggle.contains(e.target) && !navLinks.contains(e.target)) {
-          navLinks.classList.remove("active");
-        }
-      });
-    </script>
-  </body>
 </html>
